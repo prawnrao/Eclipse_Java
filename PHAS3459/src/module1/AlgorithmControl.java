@@ -31,16 +31,17 @@ public class AlgorithmControl {
 		}
 	}
 	
-	public void timer() {
-		long t = System.currentTimeMillis();
-		long end = t+1;
-		int c = 0;
-		while(System.currentTimeMillis() < end) {
-			if (c%100 == 0) {
-				System.out.println("\nNumber of loops " +c);
+	public int timer(long maxTime,int loopSteps) {
+		long t = System.currentTimeMillis(); //sets the start time to the current time
+		long endTime = t+maxTime;//sets the end time, which is eventually used to break the loop
+		int c = 0;//sets the counter to 0
+		while(System.currentTimeMillis() < endTime) {//creates a loop which stops once the time overshoots the end time
+			if (c % loopSteps == 0) {//executes every certain number of loops
+				System.out.println("Number of loops " +c);//prints the number of loops every certain number of loops
 			}
-			c = c+1;	
+			c = c+1;	//increments the counter
 		}
+		return c;
 	}	
 		
 		
@@ -52,7 +53,16 @@ public class AlgorithmControl {
 		ac.loop();
 		ac.decrement();
 		ac.increment();
-		ac.timer();
+		
+		//input the runtime in milliseconds and the frequency of the number of loops being displayed
+		int totalLoops1 = ac.timer(8000,1000);
+		//System.out.println("\nTotal number of loops with 8 seconds and 1000 loop frequency "+totalLoops1);
+		
+		//input the runtime in milliseconds and the frequency of the number of loops being displayed
+		int totalLoops2 = ac.timer(8000,40000);
+		System.out.println("\nTotal number of loops with 8 seconds and 1000 loop frequency "+totalLoops1);
+		System.out.println("\nTotal number of loops with 8 seconds and 40000 loop frequency "+totalLoops2);
+		System.out.println("\n The number of loops completed when using a loop frequency of 40000 was\n more than the number of loops completed with a 1000 loop frequency\n this is because the computer is outputting less\n frequently and hence has more computing power to run the loop itself");
 	}
 
 }
