@@ -33,11 +33,11 @@ public class AlgorithmControl {
 	
 	public void timer() {
 		long t = System.currentTimeMillis();
-		long end = t+10000;
+		long end = t+1;
 		int c = 0;
 		while(System.currentTimeMillis() < end) {
 			if (c%100 == 0) {
-				System.out.println("\n\nNumber of loops " +c);
+				System.out.println("\nNumber of loops " +c);
 			}
 			c = c+1;	
 		}
