@@ -9,10 +9,22 @@ public class AlgorithmControl {
 			System.out.println("i = "+i);
 		}
 	}
+	
+	public void decrement() {
+		int w = 5;
+		int minw = -12;
+		System.out.println("Numbers from 5 to -12");
+		while (w >= minw) {
+			System.out.println("w = "+w);
+			w = w-1;
+		}
+	}
 	public static void main(String[] args) {
 		AlgorithmControl ac = new AlgorithmControl();
-		ac.loop();
 		
+		
+		ac.loop();
+		ac.decrement();
 	}
 
 }
