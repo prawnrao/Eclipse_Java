@@ -29,15 +29,15 @@ public class VectorMethods {
 
 		VectorMethods vm = new VectorMethods();
 		
-		//Calls the magnitude function, to determine the magnitude of the vector (5,3,4)
+		//Calls the magnitude function, to determine the magnitude of the defined vector 
 		double mag1 = vm.magnitude(5,3,4);
 		System.out.println("\nThe magnitude of (5,3,4) vector is: "+mag1);
 		
-		//Calls the angle function to determine the angle between the two vectors (2,3,4) and (1,3,2)
+		//Calls the angle function to determine the angle between the two defined vectors 
 		double ang1 = vm.angle(2,3,4,1,3,2);
 		System.out.println("\nThe angle between (2,3,4) and (1,3,2) is: "+ang1+" radians");
 		
-		//Calls the angle function to try to find the angle between the two vectors (2,3,4) and (0,0,0)
+		//Calls the angle function to try and find the angle between the two defined vectors 
 		double ang2 = vm.angle(2,3,4,0,0,0);
 		System.out.println("\nThe angle between (2,3,4) and (0,0,0) is: "+ang2+" radians");
 		System.out.println("The angle function is defined using the dot product method and so when \nattempting to solve it for (2,3,4) and (0,0,0) it runs into a divide by zero \nand returns 'not a number' as the answer.");

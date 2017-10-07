@@ -4,14 +4,15 @@ public class AlgorithmControl {
 	//defines the for loop for counting the integers from 1 to 10
 	public void loop() {
 		int i = 0;
-		int maxi = 10;
+		int maxi = 10;//sets the maximum number to count up to
 		System.out.println("Numbers from 1 to 10");
 		for (i=0 ; i<=maxi ; i++) {
 			System.out.println("i = "+i);
 		}
 	}
-	//defines the while loop for decrementing the integers from 5 to -12
+	//defines the while loop for decrementing the integers
 	public void decrement() {
+		//sets the number to start the decrementing process with, and sets the number at which the loop should stop
 		int w = 5;
 		int minw = -12;
 		System.out.println("\nNumbers from 5 to -12");
@@ -60,9 +61,9 @@ public class AlgorithmControl {
 		
 		//input the runtime in milliseconds and the frequency of the number of loops being displayed
 		int totalLoops2 = ac.timer(8000,40000);
-		System.out.println("\nTotal number of loops with 8 seconds and 1000 loop frequency "+totalLoops1);
-		System.out.println("\nTotal number of loops with 8 seconds and 40000 loop frequency "+totalLoops2);
-		System.out.println("\n The number of loops completed when using a loop frequency of 40000 was\n more than the number of loops completed with a 1000 loop frequency\n this is because the computer is outputting less\n frequently and hence has more computing power to run the loop itself");
+		System.out.println("\nTotal number of loops in 8 seconds with 1000 loop frequency "+totalLoops1);
+		System.out.println("\nTotal number of loops in 8 seconds with 40000 loop frequency "+totalLoops2);
+		System.out.println("\n The number of loops completed when using a loop frequency of 40000 was\n more than the number of loops completed with a 1000 loop frequency\n this is because the computer is outputting less frequently\n and hence had more computing power (RAM) to run the loop itself");
 	}
 
 }
