@@ -29,4 +29,8 @@ public class ThreeVector {
 	public String toString() {
 		return "("+x+","+y+","+z+")";
 	}
+	
+	double scalarProduct() {
+		double SProd = 
+	}
 }
