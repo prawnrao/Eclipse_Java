@@ -11,14 +11,14 @@ public class ThreeVector {
 		this.z = z;
 	}
 
-	//This calculates the magnitude of the Three Vector
+	//STATIC MAGNITUDE
 	static double magnitude (ThreeVector v) {
 		double mag = Math.sqrt(v.x*v.x + v.y*v.y + v.z*v.z);
 		
 		return mag;
 	}
 	
-	//This calculates the unit vector of the Three Vector
+	//STATIC UNIT VECTOR
 	static ThreeVector unitVector(ThreeVector v) {
 		double unitx = v.x/magnitude(v);
 		double unity = v.y/magnitude(v);
@@ -64,7 +64,7 @@ public class ThreeVector {
 		return add(this,v);
 	}
 	
-	//STATIC ANGLE
+	//STATIC ANGLE ((theta) = arccos(a.b/|a||b|))
 	static double angle(ThreeVector v1, ThreeVector v2) {
 		double theta = Math.acos((scalarProduct(v1,v2)/(magnitude(v1)*magnitude(v2))));
 		return theta;
@@ -74,6 +74,8 @@ public class ThreeVector {
 	double angle(ThreeVector v) {
 		return angle(this,v);
 	}
+	
+	
 	//This is the toString code, which allows to print all the ThreeVector values easily
 	public String toString() {
 		return "("+x+","+y+","+z+")";
