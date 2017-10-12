@@ -3,7 +3,6 @@ package module2;
 public class ThreeVector {
 	// member variables
 	double x, y, z;
-	double mag;
 	//constructor
 	public ThreeVector(double x,double y,double z) {
 		this.x = x;
