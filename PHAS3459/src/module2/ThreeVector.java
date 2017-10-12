@@ -26,23 +26,34 @@ public class ThreeVector {
 		return new ThreeVector(unitx,unity,unitz);	
 	}
 	
-	//This piece of code calculates the scalar product between 2 Three Vectors that are manually inputed 
+	//NON-STATIC scalar product between 2 Three Vectors 
 	double scalarProduct(ThreeVector v) {
 		double SProd = v.x*this.x+v.y*this.y+v.z*this.z;
 		return SProd;
 	}
-	//This piece of code overloads the scalarProduct function, and allows it to take 2 ThreeVector variables to calculate the scalar product
+	//STATIC scalar product between 2 Three Vectors 
 	static double scalarProduct(ThreeVector v1,ThreeVector v2) {
 		double SProd = v1.x*v2.x+v1.y*v2.y+v1.z*v2.z;
 		return SProd;
 	}
 	
+	//NON-STATIC VECTOR product between 2 Three Vectors
+	ThreeVector vectorProduct(ThreeVector v2) {
+		double VProdx = (this.y*v2.z)-(this.z*v2.y);
+		double VPrody = (this.z*v2.x)-(this.x*v2.z);
+		double VProdz = (this.x*v2.y)-(this.y*v2.x);
+		return new ThreeVector(VProdx, VPrody,VProdz);
+	}
+	
+	//STATIC VECTOR product between 2 Three Vectors
 	static ThreeVector vectorProduct(ThreeVector v1, ThreeVector v2) {
 		double VProdx = (v1.y*v2.z)-(v1.z*v2.y);
 		double VPrody = (v1.z*v2.x)-(v1.x*v2.z);
 		double VProdz = (v1.x*v2.y)-(v1.y*v2.x);
 		return new ThreeVector(VProdx, VPrody,VProdz);
 	}
+	
+	
 	
 	//This is the toString code, which allows to print all the ThreeVector values easily
 	public String toString() {

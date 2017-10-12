@@ -19,23 +19,29 @@ public class TestThreeVector {
 		System.out.println("\nVector3 is: "+v3);
 		System.out.println("Unit Vector3 is: "+unitv3);
 		
+		//NON-STATIC SCALAR PRODUCT
 		double scalar_product_12 = v1.scalarProduct(v2);//calculates the non-static scalar product between v1 and v2
 		double scalar_product_13 = v1.scalarProduct(v3);//calculates the non-static scalar product between v1 and v3
-		
 		System.out.println("\nScalar Product using non-static method between v1 and v2 is: "+scalar_product_12);
 		System.out.println("Scalar Product using non-static method between v1 and v3 is: "+scalar_product_13);
 		
+		//STATIC SCALAR PRODUCT
 		double static_scalar_product_12 = ThreeVector.scalarProduct(v1, v2);//calculates the static scalar product between v1 and v2
 		double static_scalar_product_13 = ThreeVector.scalarProduct(v1, v3);//calculates the static scalar product between v1 and v3
-		
 		System.out.println("\nScalar Product using static method between v1 and v2 is: "+static_scalar_product_12);
 		System.out.println("Scalar Product using static method between v1 and v3 is: "+static_scalar_product_13);
 
-		ThreeVector vector_product_12 = ThreeVector.vectorProduct(v1, v2) ;
-		ThreeVector vector_product_13 = ThreeVector.vectorProduct(v1, v3) ;
+		//NON-STATIC VECTOR PRODUCT
+		ThreeVector vector_product_12 = v1.vectorProduct(v2) ;
+		ThreeVector vector_product_13 = v1.vectorProduct(v3) ;
+		System.out.println("\nVector Product using non-static method between v1 and v2 is: "+ vector_product_12);
+		System.out.println("Vector Product using non-static method between v1 and v3 is: "+ vector_product_13);
 		
-		System.out.println("\nVector Product between v1 and v2 is: "+ vector_product_12);
-		System.out.println("Vector Product between v1 and v3 is: "+ vector_product_13);
+		//STATIC VECTOR PRODUCT
+		ThreeVector static_vector_product_12 = ThreeVector.vectorProduct(v1, v2) ;
+		ThreeVector static_vector_product_13 = ThreeVector.vectorProduct(v1, v3) ;
+		System.out.println("\nVector Product using static method between v1 and v2 is: "+ static_vector_product_12);
+		System.out.println("Vector Product using static method between v1 and v3 is: "+ static_vector_product_13);
 	}
 
 }
