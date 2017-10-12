@@ -26,26 +26,19 @@ public class ThreeVector {
 		return new ThreeVector(unitx,unity,unitz);	
 	}
 	
-	//NON-STATIC scalar product between 2 Three Vectors 
-	double scalarProduct(ThreeVector v) {
-		double SProd = v.x*this.x+v.y*this.y+v.z*this.z;
-		return SProd;
-	}
-	//STATIC scalar product between 2 Three Vectors 
+	//STATIC scalar product 
 	static double scalarProduct(ThreeVector v1,ThreeVector v2) {
-		double SProd = v1.x*v2.x+v1.y*v2.y+v1.z*v2.z;
-		return SProd;
+			double SProd = v1.x*v2.x+v1.y*v2.y+v1.z*v2.z;
+			return SProd;
+	}
+		
+	//NON-STATIC scalar product  
+	double scalarProduct(ThreeVector v) {
+		return scalarProduct(this, v);
 	}
 	
-	//NON-STATIC VECTOR product between 2 Three Vectors
-	ThreeVector vectorProduct(ThreeVector v2) {
-		double VProdx = (this.y*v2.z)-(this.z*v2.y);
-		double VPrody = (this.z*v2.x)-(this.x*v2.z);
-		double VProdz = (this.x*v2.y)-(this.y*v2.x);
-		return new ThreeVector(VProdx, VPrody,VProdz);
-	}
 	
-	//STATIC VECTOR product between 2 Three Vectors
+	//STATIC VECTOR product 
 	static ThreeVector vectorProduct(ThreeVector v1, ThreeVector v2) {
 		double VProdx = (v1.y*v2.z)-(v1.z*v2.y);
 		double VPrody = (v1.z*v2.x)-(v1.x*v2.z);
@@ -53,8 +46,34 @@ public class ThreeVector {
 		return new ThreeVector(VProdx, VPrody,VProdz);
 	}
 	
+	//NON-STATIC VECTOR 
+	ThreeVector vectorProduct(ThreeVector v) {
+		return vectorProduct(this,v);
+	}
 	
+	//STATIC ADDITION	
+	static ThreeVector add(ThreeVector v1,ThreeVector v2) {
+		double addx = v1.x+v2.x;
+		double addy = v1.y+v2.y;
+		double addz = v1.z+v2.z;
+		return new ThreeVector(addx,addy,addz);
+	}
 	
+	//NON-STATIC ADDITION	
+	ThreeVector add(ThreeVector v) {
+		return add(this,v);
+	}
+	
+	//STATIC ANGLE
+	static double angle(ThreeVector v1, ThreeVector v2) {
+		double theta = Math.acos((scalarProduct(v1,v2)/(magnitude(v1)*magnitude(v2))));
+		return theta;
+	}
+	
+	//NON-STATIC ANGLE
+	double angle(ThreeVector v) {
+		return angle(this,v);
+	}
 	//This is the toString code, which allows to print all the ThreeVector values easily
 	public String toString() {
 		return "("+x+","+y+","+z+")";
