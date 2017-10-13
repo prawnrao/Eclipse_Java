@@ -10,7 +10,6 @@ public class Complex {
 	}
 	
 	
-	
 	//REAL component of Complex number c
 	static double real(Complex c) {
 		return c.a;
@@ -23,7 +22,7 @@ public class Complex {
 	
 	//MODULUS of Complex number c
 	static double modulus(Complex c) {
-		double modulus = c.a*c.a + c.b*c.b;
+		double modulus = Math.sqrt(c.a*c.a + c.b*c.b);
 		return modulus;
 	}
 	
@@ -77,16 +76,27 @@ public class Complex {
 	
 	//DIVISION
 	static Complex divide(Complex c1, Complex c2) {
-		double a = (c1.a*c2.a+c1.b*c2.b)/modulus(c2);
-		double b = (c1.b*c2.a-c1.a*c2.b)/modulus(c2);
+		double a = ((c1.a*c2.a+c1.b*c2.b)/(c2.a*c2.a+c2.b*c2.b));
+		double b = ((c1.b*c2.a-c1.a*c2.b)/(c2.a*c2.a+c2.b*c2.b));
 		return new Complex(a,b);
 	}	
 	
 	//This is the toString code, which allows to print all the complex values easily
 	public String toString() {
-		return "("+a+","+b+"i)";
+		if (b> 0) {
+			return a+"+"+b+"i";
+		}		
+		if (b<0) {
+			return a+""+b+"i";
+		}
+		if (b==0) {
+			return a+" ";
+		}
+		if (a==0) {
+			return b+" ";
+		}
+		else return a+" ";
 	}
-	
 	//This allows to define a complex number using magnitude and angle from positive real axis
 	public Complex setFromModulusAngle(double mag, double ang) {
 		a = mag*Math.cos(ang);

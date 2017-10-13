@@ -26,9 +26,35 @@ public class FallingParticle {
 		this.v = v;
 	}
 	
-	//TODO
-	public double getZ(double t) {
-		this.z = this.h -  t*t*((d*v*v/m)-g/2);
-		return this.z;
+	//allows the user to get the value of z
+	public double getZ() {
+		return z;
 	}
+
+	//allows the user to get the value of v
+	public double getV() {
+		return v;
+	}
+	
+	//allows the user to get the value of t
+	public double getT() {
+		return t;
+	}
+	
+	public void doTimeStep(double deltaT) {
+		double a = (d*v*v/m) - g;
+		v = a*deltaT;
+		z = v*deltaT;	
+	}
+	
+	public double drop(double deltaT){
+		double T = deltaT;
+		while (z > 0) {
+			doTimeStep(T);
+			T = T +deltaT;
+		}
+		return T;
+	}
+		
 }
+
