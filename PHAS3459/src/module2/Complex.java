@@ -87,10 +87,12 @@ public class Complex {
 		return "("+a+","+b+"i)";
 	}
 	
-	//public setFromModulusAngle(double mag, double arg) {
-		
-	
-	//}
+	//This allows to define a complex number using magnitude and angle from positive real axis
+	public Complex setFromModulusAngle(double mag, double ang) {
+		a = mag*Math.cos(ang);
+		b = mag*Math.sin(ang);
+		return new Complex(a,b);
+	}
 	
 	//Defining static variables of 1, zero and i
 	static Complex One = new Complex(1,0);
