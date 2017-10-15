@@ -10,7 +10,7 @@ public class ThreeVector {
 		this.z = z;
 	}
 
-	//STATIC MAGNITUDE
+	//STATIC MAGNITUDE of a ThreeVecotr
 	static double magnitude (ThreeVector v) {
 		double mag = Math.sqrt(v.x*v.x + v.y*v.y + v.z*v.z);
 		
@@ -25,19 +25,19 @@ public class ThreeVector {
 		return new ThreeVector(unitx,unity,unitz);	
 	}
 	
-	//STATIC scalar product 
+	//STATIC scalar product of two ThreeVectors
 	static double scalarProduct(ThreeVector v1,ThreeVector v2) {
 			double SProd = v1.x*v2.x+v1.y*v2.y+v1.z*v2.z;
 			return SProd;
 	}
 		
-	//NON-STATIC scalar product  
+	//NON-STATIC scalar product of two ThreeVectors
 	double scalarProduct(ThreeVector v) {
 		return scalarProduct(this, v);
 	}
 	
 	
-	//STATIC VECTOR product 
+	//STATIC VECTOR product of two ThreeVectors
 	static ThreeVector vectorProduct(ThreeVector v1, ThreeVector v2) {
 		double VProdx = (v1.y*v2.z)-(v1.z*v2.y);
 		double VPrody = (v1.z*v2.x)-(v1.x*v2.z);
@@ -45,12 +45,12 @@ public class ThreeVector {
 		return new ThreeVector(VProdx, VPrody,VProdz);
 	}
 	
-	//NON-STATIC VECTOR 
+	//NON-STATIC VECTOR of two ThreeVectors
 	ThreeVector vectorProduct(ThreeVector v) {
 		return vectorProduct(this,v);
 	}
 	
-	//STATIC ADDITION	
+	//STATIC ADDITION of two ThreeVectors
 	static ThreeVector add(ThreeVector v1,ThreeVector v2) {
 		double addx = v1.x+v2.x;
 		double addy = v1.y+v2.y;
@@ -58,18 +58,18 @@ public class ThreeVector {
 		return new ThreeVector(addx,addy,addz);
 	}
 	
-	//NON-STATIC ADDITION	
+	//NON-STATIC ADDITION of two ThreeVectors
 	ThreeVector add(ThreeVector v) {
 		return add(this,v);
 	}
 	
-	//STATIC ANGLE ((theta) = arccos(a.b/|a||b|))
+	//STATIC ANGLE between two ThreeVectors
 	static double angle(ThreeVector v1, ThreeVector v2) {
 		double theta = Math.acos((scalarProduct(v1,v2)/(magnitude(v1)*magnitude(v2))));
 		return theta;
 	}
 	
-	//NON-STATIC ANGLE
+	//NON-STATIC ANGLE between two ThreeVectors
 	double angle(ThreeVector v) {
 		return angle(this,v);
 	}
