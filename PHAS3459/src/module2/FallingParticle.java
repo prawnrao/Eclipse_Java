@@ -8,7 +8,7 @@ public class FallingParticle {
 	double z;//vertical position of the particle measured from the base
 	double h;//initial starting height measured from the base
 	double v;//velocity of the particle measured upwards
-	static double g = 9.81;//acceleration due to gravity
+	static final double g = 9.81;//acceleration due to gravity
 	
 	//constructor with arguments of mass and drag coefficient
 	public FallingParticle(double m, double d) {
@@ -43,17 +43,20 @@ public class FallingParticle {
 	
 	public void doTimeStep(double deltaT) {
 		double a = (d*v*v/m) - g;
-		v = a*deltaT;
-		z = v*deltaT;	
+		v = getV()- a*deltaT;
+		z = getZ() - v*deltaT;	
 	}
 	
-	public double drop(double deltaT){
-		double T = deltaT;
+	public void drop(double deltaT){
+		z = h;
+		v = 0;
 		while (z > 0) {
-			doTimeStep(T);
-			T = T +deltaT;
+			doTimeStep(deltaT);
+			t = t +deltaT;
+			
 		}
-		return T;
+		
+		
 	}
 		
 }
