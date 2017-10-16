@@ -53,28 +53,28 @@ public class Complex {
 		return c1;
 	}
 	
-	//ADDITION
+	//ADDITION of two complex numbers
 	static Complex add(Complex c1, Complex c2) {
 		double a = c1.a + c2.a;
 		double b = c1.b + c2.b;
 		return new Complex(a,b);
 	}	
 	
-	//SUBTRACTION
+	//SUBTRACTION of two complex numbers
 	static Complex subtract(Complex c1, Complex c2) {
 		double a = c1.a - c2.a;
 		double b = c1.b - c2.b;
 		return new Complex(a,b);
 	}		
 	
-	//MULTIPLICATION 
+	//MULTIPLICATION of two complex numbers
 	static Complex multiply(Complex c1, Complex c2) {
 		double a = (c1.a * c2.a) - (c1.b *c2.b);
 		double b = (c1.a * c2.b) + (c1.b * c2.a);
 		return new Complex(a,b);
 	}	
 	
-	//DIVISION
+	//DIVISION of two complex numbers
 	static Complex divide(Complex c1, Complex c2) {
 		double a = ((c1.a*c2.a+c1.b*c2.b)/(c2.a*c2.a+c2.b*c2.b));
 		double b = ((c1.b*c2.a-c1.a*c2.b)/(c2.a*c2.a+c2.b*c2.b));

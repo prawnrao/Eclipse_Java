@@ -41,22 +41,26 @@ public class FallingParticle {
 		return t;
 	}
 	
+	//each time step runs this piece of code
 	public void doTimeStep(double deltaT) {
-		double a = (d*v*v/m) - g;
+		//calculates the acceleration at each time step
+		double a = (d*v*v/m) - g; 
+		//calculates the velocity at each time step
 		v = getV()- a*deltaT;
+		//calculates the height at each time step
 		z = getZ() - v*deltaT;	
 	}
 	
 	public void drop(double deltaT){
+		//Initialises the height, velocity and time 
 		z = h;
 		v = 0;
+		t = 0;
+		//Loops as long as the height is positive
 		while (z > 0) {
 			doTimeStep(deltaT);
-			t = t +deltaT;
-			
-		}
-		
-		
+			t = t +deltaT;//increments the time
+		}	
 	}
 		
 }

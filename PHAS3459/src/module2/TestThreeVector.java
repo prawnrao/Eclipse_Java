@@ -46,17 +46,17 @@ public class TestThreeVector {
 		System.out.println("Vector Product using non-static method between v1 and v3 is: "+ vector_product_13);
 	
 		
-		//STATIC ANGLE 
+		//STATIC ANGLE in radians
 		double static_angle12 = ThreeVector.angle(v1, v2);
 		double static_angle13 = ThreeVector.angle(v1, v3);
-		System.out.println("\nAngle between v1 and v2 is: "+static_angle12);
-		System.out.println("\nAngle between v1 and v3 is: "+static_angle13);
+		System.out.println("\nAngle between v1 and v2 is: "+static_angle12+" rad");
+		System.out.println("\nAngle between v1 and v3 is: "+static_angle13+" rad");
 		
-		//NON-STATIC ANGLE 
+		//NON-STATIC ANGLE in radians
 		double angle12 = v1.angle(v2);
 		double angle13 = v1.angle(v3);
-		System.out.println("\nAngle between v1 and v2 is: "+angle12);
-		System.out.println("\nAngle between v1 and v3 is: "+angle13);
+		System.out.println("\nAngle between v1 and v2 is: "+angle12+" rad");
+		System.out.println("\nAngle between v1 and v3 is: "+angle13+" rad");
 		System.out.println("\nThe reason why the angle between v1 and v3 is not defined is because there is a divide by 0 \nin the formula for calculating the angle.");
 		
 		System.out.println("If you print ThreeVectors without the toString method instead of printing values it prints\nsomething similar to this : 'module2.ThreeVector@33909752'");
