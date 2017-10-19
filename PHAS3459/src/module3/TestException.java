@@ -54,7 +54,7 @@ public class TestException {
 		//Defines a new object and sets the initial height
 		FallingParticle fp = null;
 		try {
-			fp = new FallingParticle(5.2,3.6);
+			fp = new FallingParticle(5.2,-3.6);
 			fp.setH(10);
 		} 
 		catch (Exception e) {
