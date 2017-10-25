@@ -43,23 +43,5 @@ public class WordCounter {
 	}
 
 
-	public static void main(String[] args){
-		String url1 = "http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_text.txt";
-		String file1 = "N:\\Documents\\M4_test.txt";
-		try {
-			brFromURL(url1);
-		} 
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		int words = countWordsInResource(url1);
-		System.out.println(words);
-		//		try {
-		//			brFromFile(file1);
-		//		} 
-		//		catch (IOException e) {
-		//			e.printStackTrace();
-		//		}
 
-	}
 }
