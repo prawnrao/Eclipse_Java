@@ -28,20 +28,43 @@ public class WordCounter {
 
 	}
 
-	public static int countWordsInResource(String url1) {
-			Scanner s = new Scanner(url1);
-			int i = 0;
-			while (s.hasNext()) {
-				String token = s.next();
-				try {
-					i += 1;
-				} catch (NumberFormatException e) {
-					// Ignore anything that is not a number!
-				}
-			}
+	public static int countWordsInResource(BufferedReader url1) {
+		Scanner s = new Scanner(url1);
+		int i = 0;
+		while (s.hasNext()) {
+			s.next();
+			i += 1;
+		}
 		return i;
 	}
 
 
+	public static void main(String[] args){
+		String url1 = "http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_text.txt";
+		String file1 = "N:\\Documents\\M4_test.txt";
+//		try {
+//			brFromURL(url1);
+//		} 
+//		catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		try {
+//			brFromFile(file1);
+//		} 
+//		catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		int words = 0;
+		try {
+			words = countWordsInResource(brFromURL(url1));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("\n"+words);
+		
+	
 
+	}
 }
