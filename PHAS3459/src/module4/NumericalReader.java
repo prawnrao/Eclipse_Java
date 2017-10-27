@@ -5,37 +5,41 @@ import java.util.Scanner;
 
 
 public class NumericalReader {
-
+	
+	//Member variables of the class
 	private double minValue, maxValue, sumOfValues;
 	private int nValues;
 	public PrintWriter pw;
 	FileWriter fw;
 	BufferedWriter bw;
-
+	
+	//Empty constructor
 	public NumericalReader() {
 
 	}
-
+	
+	//Defines the method that allows the user to input via the keyboard
 	public static String getStringFromKeyboard()throws Exception{
-
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
 		System.out.println("Please type the directory where the data should be stored:");
 		String s = br.readLine();
 		return s;
 	}
-
+	
+	//This method allows an input URL and converts its content to text stored in the buffer
 	public BufferedReader brFromURL(String urlName) throws IOException {
 		URL url = new URL(urlName);
 		InputStream is = url.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader url_br = new BufferedReader(isr);
-		return url_br;
+		return url_br;//returns new buffered reader object
 	}
-
+	
+	//Start analysis method, initialises the member variables
 	void analysisStart(String datafile) throws IOException {
-		minValue = Double.MAX_VALUE;
-		maxValue = Double.MIN_VALUE;
+		minValue = Double.MAX_VALUE;//assigns the maximum value to ensure all numbers are smaller than the initial
+		maxValue = Double.MIN_VALUE;//assigns the minimum value to ensure all the numbers are greater than the initial
 		nValues = 0;
 		sumOfValues = 0;
 		File f = new File(datafile);
@@ -44,10 +48,10 @@ public class NumericalReader {
 		pw = new PrintWriter(bw);
 	}
 
-
+	//This method analysis the data, and updates the values of the member variables
 	void analyseData(String line) {
-		if (line.isEmpty() || !Character.isDigit(line.charAt(0))) {
-			return;
+		if (line.isEmpty() || !Character.isDigit(line.charAt(0))) {//Checks if the line is empty, or the fist character is not a digit 
+			return;//goes to the next line if the above condition is satisfied
 		}
 		Scanner s = new Scanner(line);
 		while (s.hasNext()) {
