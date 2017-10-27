@@ -6,14 +6,17 @@ import java.util.Scanner;
 
 public class NumericalReader {
 
-	double minValue, maxValue, sumOfValues;
-	int nValues;
-	PrintWriter pw;
+	private double minValue, maxValue, sumOfValues;
+	private int nValues;
+	public PrintWriter pw;
+	FileWriter fw;
+	BufferedWriter bw;
+
 	public NumericalReader() {
 
 	}
 
-	public static String getStringFromKeyboard() throws IOException{
+	public static String getStringFromKeyboard()throws Exception{
 
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
@@ -31,16 +34,14 @@ public class NumericalReader {
 	}
 
 	void analysisStart(String datafile) throws IOException {
-		minValue = Double.MIN_VALUE;
-		maxValue = Double.MAX_VALUE;
+		minValue = Double.MAX_VALUE;
+		maxValue = Double.MIN_VALUE;
 		nValues = 0;
 		sumOfValues = 0;
 		File f = new File(datafile);
-		FileWriter fw = new FileWriter(f);
-		BufferedWriter bw = new BufferedWriter(fw);
+		fw = new FileWriter(f);
+		bw = new BufferedWriter(fw);
 		pw = new PrintWriter(bw);
-		pw.format("The minimum value is: %d"+"The maximum value is: %d "+"The number of values is: %d"+"The sum of the values is: %d",minValue,maxValue,nValues,sumOfValues);
-		pw.close();
 	}
 
 
@@ -49,20 +50,77 @@ public class NumericalReader {
 			return;
 		}
 		Scanner s = new Scanner(line);
-		
+		while (s.hasNext()) {
+
+			double x = Double.parseDouble(s.next());
+			if(x<minValue) {
+				minValue = x;
+			}
+
+			if(x>maxValue) {
+				maxValue = x;
+			}
+			nValues++;
+			sumOfValues += x;
+			pw.println(x);
+			System.out.println(x);
+		}
+		s.close();
 	}
 
+	void analysisEnd() {
+		System.out.println("Minimum value is: "+minValue);
+		System.out.println("Maximum value is: "+maxValue);
+		System.out.println("Total number of values read: "+nValues);
+		System.out.println("Average value is: "+sumOfValues/nValues+"\n");
+		pw.close();
+	}
+
+
 	public static void main(String[] args) {
+
 		try {
-			String directory = getStringFromKeyboard();
-			System.out.println(directory);
-		} catch (IOException e) {
+			String saveFile = "";
+			String saveDir = NumericalReader.getStringFromKeyboard();
+			if (saveDir == null) {
+				saveFile = System.getProperty("user.Home");
+			}
+
+
+			saveFile = (saveDir + File.separator + "numbers1.txt");
+			NumericalReader nr = new NumericalReader();
+
+
+			BufferedReader br = nr.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data1.txt");
+			String line = "";
+
+			nr.analysisStart(saveFile); // initialize minValue etc.
+
+			while ((line = br.readLine()) != null) {
+				nr.analyseData(line); // analyze lines, check for comments etc.
+			}
+			nr.analysisEnd(); // print min, max, etc.
+
+
+
+
+
+			saveFile = (saveDir + File.separator + "numbers2.txt");
+			NumericalReader nr2 = new NumericalReader();
+
+			BufferedReader br2 = nr2.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
+			line = "";
+
+			nr2.analysisStart(saveFile); // initialize minValue etc.
+
+			while ((line = br2.readLine()) != null) {
+				nr2.analyseData(line); // analyze lines, check for comments etc.
+			}
+			nr2.analysisEnd(); // print min, max, etc.
+
+		} catch (Exception e) {
 			System.out.println(e);
 		}
-
-		//		try {
-		//			analysisStart()
-		//		}
 
 
 
