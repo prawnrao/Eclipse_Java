@@ -16,7 +16,8 @@ public class TestSquareMatrix {
 			e.printStackTrace();
 		}
 		System.out.println("Matrix A:");
-		A.show();
+		System.out.println(A);
+
 
 		SquareMatrix B = null;
 		try {
@@ -26,7 +27,8 @@ public class TestSquareMatrix {
 			e.printStackTrace();
 		}
 		System.out.println("Matrix B:");
-		B.show();
+		System.out.println(B);
+
 
 		SquareMatrix C = null;
 		try {
@@ -36,7 +38,8 @@ public class TestSquareMatrix {
 			e.printStackTrace();
 		}
 		System.out.println("Matrix C:");
-		C.show();
+		System.out.println(C);
+
 
 		SquareMatrix D = null;
 		try {
@@ -46,6 +49,18 @@ public class TestSquareMatrix {
 			e.printStackTrace();
 		}
 		System.out.println("Matrix D:");
-		D.show();
+		System.out.println(D);
+
+
+		SquareMatrix unit = null;
+		try {
+			unit = SquareMatrix.unitMatrix(5);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(unit);
+
+
+		System.out.println(A.equals(B));
 	}
 }
