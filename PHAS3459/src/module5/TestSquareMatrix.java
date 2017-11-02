@@ -7,7 +7,7 @@ public class TestSquareMatrix {
 		double[][] b  = {{2,1,0},{0,1,0},{-1,0,1}};
 		double[][] c  = {{4,3},{3,2}};
 		double[][] d  = {{-2,3},{3,-4}};
-
+		
 		SquareMatrix A = null;
 		try {
 			A = new SquareMatrix(a);
@@ -60,13 +60,32 @@ public class TestSquareMatrix {
 		System.out.println("Does A equal B?: \n"+A.equals(B));
 		
 		try {
-			
 			System.out.println("\nA + B:\n"+SquareMatrix.add(A, B));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		try {
 			System.out.println("\nA - B:\n"+SquareMatrix.minus(A, B));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			SquareMatrix AB = SquareMatrix.multiply(A,B);
+			SquareMatrix BA = SquareMatrix.multiply(B,A);
+			SquareMatrix commutator_AB = SquareMatrix.minus(AB,BA);
+			System.out.println("\nA * B:\n"+AB);
+			System.out.println("\nB * A:\n"+BA);
+			System.out.println("\n[A,B]:\n"+commutator_AB);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			SquareMatrix CD = SquareMatrix.multiply(C, D);
+			SquareMatrix I = SquareMatrix.unitMatrix(2);
+			System.out.print("Does CD equal I?: \n"+CD.equals(I));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

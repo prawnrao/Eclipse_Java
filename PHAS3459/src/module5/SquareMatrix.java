@@ -7,14 +7,12 @@ public class SquareMatrix {
 	private double [][] elements;
 
 
-
 	/**
 	 * Square matrix constructor, that throws an exception if the defined columns does not equal the defined rows
 	 * and throws an exception if the number of columns is inconsistent
 	 * @param elements
 	 * @throws Exception
 	 */
-
 	public SquareMatrix(double[][]elements) throws Exception{
 		this.elements = elements;
 		int rows = elements.length;//number of rows
@@ -35,6 +33,7 @@ public class SquareMatrix {
 
 	}
 
+
 	/**
 	 * This constructor takes an integer N and creates a N by N matrix of 0s.
 	 * @param rows
@@ -46,15 +45,12 @@ public class SquareMatrix {
 		elements = new double[rows][columns];
 	}
 
-	/**
-	 * This method returns the dimension of a matrix
-	 * @param sq
-	 * @return
-	 */
+	//This method gives the dimension of a square matrix
 	public int dimension() {
 		int N = this.elements.length;
 		return N;
 	}
+
 
 	/**
 	 * This method creates a N by N unit matrix
@@ -89,6 +85,7 @@ public class SquareMatrix {
 		return sb.toString();//converts Stringbuilder to string and returns
 	}
 
+
 	/**
 	 * This method checks whether to matrices exactly equal each other
 	 * @param B
@@ -107,31 +104,82 @@ public class SquareMatrix {
 		return true;
 	}
 
+
 	/**
-	 * This method is a static addition of two square matrices of the same dimension
+	 * This method is a static addition of two square matrices 
 	 * @param A
 	 * @param B
 	 * @return
 	 */
 	public static SquareMatrix add(SquareMatrix A, SquareMatrix B) throws Exception {
 		if (A.dimension() != B.dimension()) throw new Exception(A+" and "+B+" are of different dimensions.");
-		SquareMatrix C = new SquareMatrix(A.dimension());
+		SquareMatrix Add = new SquareMatrix(A.dimension());
 		for (int i = 0; i < A.dimension(); i++)
 			for (int j = 0; j < A.dimension(); j++)
-				C.elements[i][j] = A.elements[i][j] + B.elements[i][j];
-		return C;
+				Add.elements[i][j] = A.elements[i][j] + B.elements[i][j];
+		return Add;
+	}
+	/**
+	 * This method is a non-static addition of two matrices
+	 * @param B
+	 * @return
+	 * @throws Exception
+	 */
+	public SquareMatrix add(SquareMatrix B) throws Exception {
+		return add(this,B);
 
 	}
-	
+
+
+	/**
+	 * This method is a static subtraction of two square matrices
+	 * @param A
+	 * @param B
+	 * @return
+	 */
 	public static SquareMatrix minus(SquareMatrix A, SquareMatrix B) throws Exception {
 		if (A.dimension() != B.dimension()) throw new Exception(A+" and "+B+" are of different dimensions.");
-		SquareMatrix C = new SquareMatrix(A.dimension());
+		SquareMatrix Minus = new SquareMatrix(A.dimension());
 		for (int i = 0; i < A.dimension(); i++)
 			for (int j = 0; j < A.dimension(); j++)
-				C.elements[i][j] = A.elements[i][j] - B.elements[i][j];
-		return C;
-
+				Minus.elements[i][j] = A.elements[i][j] - B.elements[i][j];
+		return Minus;
+	}
+	/**
+	 * This method is a non-static subtraction of two square matrices
+	 * @param B
+	 * @return
+	 * @throws Exception
+	 */
+	public SquareMatrix minus(SquareMatrix B) throws Exception {
+		return minus(this,B);
 	}
 
+
+	/**
+	 * This method is a static multiplication of two square matrices 
+	 * @param A
+	 * @param B
+	 * @return
+	 * @throws Exception
+	 */
+	public static SquareMatrix multiply(SquareMatrix A,SquareMatrix B) throws Exception{
+		if (A.dimension() != B.dimension()) throw new Exception(A+"and "+B+" are of different dimensions.");
+		SquareMatrix product = new SquareMatrix(A.dimension());
+		for (int i = 0; i < product.dimension(); i++)
+			for (int j = 0; j < product.dimension(); j++)
+				for (int k = 0; k < A.dimension(); k++)
+					product.elements[i][j] += (A.elements[i][k] * B.elements[k][j]);
+		return product;
+	}
+	/**
+	 * This method is a non-static multiplication of two square matrices
+	 * @param B
+	 * @return
+	 * @throws Exception
+	 */
+	public SquareMatrix multiply(SquareMatrix B) throws Exception {
+		return multiply(this,B);
+	}
 }
 
