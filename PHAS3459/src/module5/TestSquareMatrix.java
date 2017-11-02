@@ -15,8 +15,8 @@ public class TestSquareMatrix {
 
 			e.printStackTrace();
 		}
-		System.out.println("Matrix A:");
-		System.out.println(A);
+		
+		System.out.println("Matrix A:\n"+A);
 
 
 		SquareMatrix B = null;
@@ -26,8 +26,7 @@ public class TestSquareMatrix {
 
 			e.printStackTrace();
 		}
-		System.out.println("Matrix B:");
-		System.out.println(B);
+		System.out.println("Matrix B:\n"+B);
 
 
 		SquareMatrix C = null;
@@ -37,9 +36,7 @@ public class TestSquareMatrix {
 
 			e.printStackTrace();
 		}
-		System.out.println("Matrix C:");
-		System.out.println(C);
-
+		System.out.println("Matrix C:\n"+C);
 
 		SquareMatrix D = null;
 		try {
@@ -48,19 +45,30 @@ public class TestSquareMatrix {
 
 			e.printStackTrace();
 		}
-		System.out.println("Matrix D:");
-		System.out.println(D);
+		System.out.println("Matrix D:\n"+D);
 
 
 		SquareMatrix unit = null;
 		try {
-			unit = SquareMatrix.unitMatrix(5);
+			unit = SquareMatrix.unitMatrix(4);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(unit);
+		System.out.println("Unit matrix of dimension " +unit.dimension()+":\n"+unit);
 
 
-		System.out.println(A.equals(B));
+		System.out.println("Does A equal B?: \n"+A.equals(B));
+		
+		try {
+			
+			System.out.println("\nA + B:\n"+SquareMatrix.add(A, B));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			System.out.println("\nA - B:\n"+SquareMatrix.minus(A, B));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

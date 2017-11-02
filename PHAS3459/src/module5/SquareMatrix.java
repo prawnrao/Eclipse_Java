@@ -7,6 +7,7 @@ public class SquareMatrix {
 	private double [][] elements;
 
 
+
 	/**
 	 * Square matrix constructor, that throws an exception if the defined columns does not equal the defined rows
 	 * and throws an exception if the number of columns is inconsistent
@@ -21,7 +22,7 @@ public class SquareMatrix {
 
 		int i = 0; //initialises the counter
 		//while loop, that checks the number of columns in each row
-		while(i < rows ) {
+		while(i < rows) {
 			this.columns = elements[i].length;//checks the number of columns in row i
 			if (this.columns != columns) {//checks the number of columns in row 0 against the number of columns in row i
 				throw new Exception("The number of columns in each row is not equal. Not a valid matrix.");
@@ -35,12 +36,23 @@ public class SquareMatrix {
 	}
 
 	/**
+	 * This constructor takes an integer N and creates a N by N matrix of 0s.
+	 * @param rows
+	 * @param columns
+	 */
+	public SquareMatrix(int N) {
+		this.rows = N;
+		this.columns = N;
+		elements = new double[rows][columns];
+	}
+
+	/**
 	 * This method returns the dimension of a matrix
 	 * @param sq
 	 * @return
 	 */
-	public static int dimension(SquareMatrix sq) {
-		int N = sq.elements.length;
+	public int dimension() {
+		int N = this.elements.length;
 		return N;
 	}
 
@@ -63,20 +75,18 @@ public class SquareMatrix {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		for (int i=0; i < elements.length; i++) {
-			for(int j =0; j < elements.length; j++) {
+		for (int i=0; i < elements.length; i++) {//loops over rows
+			for(int j =0; j < elements.length; j++) {//loops over columns
 				sb.append("\t");
 				sb.append(this.elements[i][j]);
 
 				if(j == elements.length-1)
 				{
 					sb.append("\n");
-
 				}
 			}
 		}
-		sb.append("\n");
-		return sb.toString();
+		return sb.toString();//converts Stringbuilder to string and returns
 	}
 
 	/**
@@ -86,6 +96,7 @@ public class SquareMatrix {
 	 */
 	public boolean equals(SquareMatrix B) {
 		SquareMatrix A = this;
+
 		for (int i = 0; i < elements.length; i++) {//loop over rows
 			for (int j = 0; j < elements.length; j++) {//loop over columns
 				if (A.elements[i][j] != B.elements[i][j]) {
@@ -94,6 +105,32 @@ public class SquareMatrix {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * This method is a static addition of two square matrices of the same dimension
+	 * @param A
+	 * @param B
+	 * @return
+	 */
+	public static SquareMatrix add(SquareMatrix A, SquareMatrix B) throws Exception {
+		if (A.dimension() != B.dimension()) throw new Exception(A+" and "+B+" are of different dimensions.");
+		SquareMatrix C = new SquareMatrix(A.dimension());
+		for (int i = 0; i < A.dimension(); i++)
+			for (int j = 0; j < A.dimension(); j++)
+				C.elements[i][j] = A.elements[i][j] + B.elements[i][j];
+		return C;
+
+	}
+	
+	public static SquareMatrix minus(SquareMatrix A, SquareMatrix B) throws Exception {
+		if (A.dimension() != B.dimension()) throw new Exception(A+" and "+B+" are of different dimensions.");
+		SquareMatrix C = new SquareMatrix(A.dimension());
+		for (int i = 0; i < A.dimension(); i++)
+			for (int j = 0; j < A.dimension(); j++)
+				C.elements[i][j] = A.elements[i][j] - B.elements[i][j];
+		return C;
+
 	}
 
 }
