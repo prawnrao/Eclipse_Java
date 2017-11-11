@@ -12,7 +12,7 @@ public class DataPoint {
 		this.ey = ey;
 	}
 	
-	public double getX() {
+	public  double getX() {
 		return x;
 	}
 	
