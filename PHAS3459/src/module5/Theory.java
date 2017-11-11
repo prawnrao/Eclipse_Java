@@ -3,7 +3,7 @@ package module5;
 public class Theory {
 	//member variable
 	private double n;
-	
+
 	/**
 	 * Constructor to set the value of n
 	 * @param n
@@ -11,7 +11,7 @@ public class Theory {
 	public Theory(double n) {
 		this.n = n;
 	}
-	
+
 	/**
 	 * function y=x^n
 	 * @param x

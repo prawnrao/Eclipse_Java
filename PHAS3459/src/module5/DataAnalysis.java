@@ -65,25 +65,26 @@ public class DataAnalysis {
 	}
 
 	public static void main(String[] args) {
+
 		Theory n_2 = new Theory(2);//theoretical y for a 2nd order fit
 		Theory n_4 = new Theory(4);//theoretical y for a 4th order fit
 		ArrayList<DataPoint> data = new ArrayList<>();//Defines a new array list with double values
 		String url = "http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-xy.txt";//url from which data is extracted
 
-		try {
+		try {//extracts data from url and puts it into an array list
 			data  = dataFromURL(url);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		//calculates chi-sq for 2nd order fit
-		double chi_sq_2 = goodnessOfFit(n_2,data);//calculates chi-sq for 2nd
-		System.out.println("Chi-square value for the y = x^2 fit was: "+chi_sq_2);
+		double chi_sq_2 = goodnessOfFit(n_2,data);//calculates chi-sq for 2nd order
+		double red_chi_sq_2 = chi_sq_2/(data.size()-1);//calculates reduced chi-sq for 2nd order (DOF = N-1)
+		System.out.println("Chi-square value for the y = x^2 fit was: "+chi_sq_2 +" and reduced Chi-square was: "+red_chi_sq_2);
 
-		//calculates chi-sq for 4th order fit
-		double chi_sq_4 = goodnessOfFit(n_4,data);
-		System.out.println("\nChi-square value for the y = x^4 fit was: "+chi_sq_4);
-		System.out.println("\nThe 4th order fit better describes the data because it has a smaller chi-sq value");
+		double chi_sq_4 = goodnessOfFit(n_4,data);//calculates chi-sq for 4th order
+		double red_chi_sq_4 = chi_sq_4/(data.size()-1);//calculates reduced chi-sq for 4th order (DOF = N-1)
+		System.out.println("\nChi-square value for the y = x^4 fit was: "+chi_sq_4+" and reduced Chi-square was: "+red_chi_sq_4);
+		System.out.println("\nThe 2nd order fit better describes the data because it has a smaller chi-sq value");
 	}
 
 }
