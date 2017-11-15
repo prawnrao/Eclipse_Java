@@ -3,7 +3,7 @@ package test;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class player {
+public class Player {
 
 	private String name;
 	private String team;
@@ -19,8 +19,8 @@ public class player {
 	private double avg;
 	private double obp;
 
-	public player(String name, String team, String pos, int games, int at_bats, int runs, int singles, int doubles, 
-			int triples, int homeruns,double rbi, double avg, double obp) {
+	public Player(String name, String team, String pos, int games, int at_bats, int runs, int singles, int doubles, 
+			int triples, int homeruns,double rbi, double avg, double obp, double slg, double ops) {
 
 		this.name = name;
 		this.team = team;
@@ -35,12 +35,15 @@ public class player {
 		this.rbi = rbi;
 		this.avg = avg;
 		this.obp = obp;
-				
+		if(at_bats != 0) {
+			slg = (singles+(2*doubles)+(3*triples)+(4*homeruns))/at_bats;
+			ops = slg + ops;
+		}
 	}
-	
-	public static player parseLine(String line) throws IOException {
+
+	public static Player parseLine(String line) throws IOException {
 		Scanner s = new Scanner(line).useDelimiter("\t");
-		
+
 		String name = s.next();
 		String team = s.next();
 		String pos = s.next();
@@ -54,44 +57,34 @@ public class player {
 		double rbi = s.nextDouble();
 		double avg = s.nextDouble();
 		double obp = s.nextDouble();
-		
+		double slg = 0; 
+		double ops = obp;
+
+		if(at_bats != 0) {
+			slg = (singles+(2*doubles)+(3*triples)+(4*homeruns))/at_bats;
+			ops = slg + obp;
+		}
+
+
 		s.close();
-		player Player = new player(name, team, pos, games, at_bats, runs, singles, doubles, triples, homeruns, rbi, avg, obp);
-		return Player;
-		
+
+		Player player = new Player(name, team, pos, games, at_bats, runs, singles, doubles, triples, homeruns, rbi, avg, obp, slg, ops);
+		return player;
+
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getTeam() {
 		return team;
 	}
-	
-	public int getGames() {
-		return games ;
-	}
-	
-	public int getAB() {
-		return at_bats;
-	}
-	
-	public int getSingle() {
-		return singles ;
-	}
-	
-	public int getDouble() {
-		return doubles ;
-	}
-	
-	public int getTriple() {
-		return triples ;
-	}
-	
+
+
 	public String toString() {
-		
-		return name;
-		
+		String print = "Name: "+name +"  Team: "+ team+ "  Positon: "+pos +"\n Games: "+games+"  At-bats: "+at_bats+"  Runs: "+runs+"\n Singles: "+singles+"  Doubles: "+doubles+"  Triples: "+triples+"\n";
+		return print;
+
 	}
 }
