@@ -89,7 +89,7 @@ public class baseball {
 			for(int i = 0; i < team_player_list.size();) {
 				Player currPlayer = team_player_list.get(i);
 				double currAB = currPlayer.getAB();
-				if(currAB > 10) {
+				if(currAB >= 10) {
 					player_ab.add(currPlayer);
 					double currSLG = currPlayer.getSLG();
 					double currOPS = currPlayer.getOPS();
