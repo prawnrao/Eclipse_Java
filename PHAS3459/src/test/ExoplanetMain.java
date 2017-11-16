@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+//DONT FORGET UNITS
 public class ExoplanetMain {
 	public static ArrayList<Exoplanet> data(String urlName) throws IOException {
 		URL url = new URL(urlName);

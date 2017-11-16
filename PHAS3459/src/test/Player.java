@@ -2,7 +2,7 @@ package test;
 
 import java.io.IOException;
 import java.util.Scanner;
-
+//DONT FORGET UNITS
 public class Player {
 
 	private String name;
