@@ -88,8 +88,8 @@ public class Earthquake {
 
 	public String toString() {
 		String print = "\n\t\t"+year+"/"+month+"/"+day+"("+hour+":"+min+":"+second+
-				")\n\t\tLatitude: "+latitude+"  Longitude: "+longitude+"  Depth: "+depth+
-				"\n\t\tEZ: "+EZ+"  Magnitude: "+magnitude+ "  id: "+id+"\n";
+				")\n\t\tLatitude: "+latitude+"  Longitude: "+longitude+"  Depth: "+depth+" km"+
+				"\n\t\tEZ: "+EZ+" km  Magnitude: "+magnitude+ "  id: "+id+"\n";
 		return print;
 
 	}
