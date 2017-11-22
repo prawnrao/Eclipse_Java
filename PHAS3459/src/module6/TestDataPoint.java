@@ -10,7 +10,12 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class TestDataPoint {
-
+	/**
+	 * Creates an array list of datapoints
+	 * @param urlName
+	 * @return
+	 * @throws IOException
+	 */
 	public static ArrayList<DataPoint> dataFromURL(String urlName) throws IOException {
 
 		URL url = new URL(urlName);

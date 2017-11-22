@@ -1,5 +1,8 @@
 package module6;
 
-public class Theory {
-
+public interface Theory {
+	
+	static double y(double x) {
+		return x;
+	}
 }

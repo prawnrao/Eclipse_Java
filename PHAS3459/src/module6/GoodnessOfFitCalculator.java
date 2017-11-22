@@ -1,5 +1,6 @@
 package module6;
 
-public class GoodnessOfFitCalculator {
+public interface GoodnessOfFitCalculator {
 
+	
 }
