@@ -23,7 +23,7 @@ public class QuadraticTheory implements Theory{
 	 * defines the toString method, to print out a QuadraticTheory object
 	 */
 	public String toString() {
-		return a+"x^2 + "+b+"x + "+c;
+		return "y = "+a+"x^2 + "+b+"x + "+c;
 
 	}
 }

@@ -66,7 +66,7 @@ public class MidTermExam {
 
 		try {
 			iceData = dataFromFile(rawData);//extracts raw data
-
+			//System.out.println(iceData);
 			//calculates the size of the arraylist, indicating the number of measurements
 			System.out.println("Total number of measurements: "+iceData.size());
 
@@ -152,7 +152,7 @@ public class MidTermExam {
 				}
 
 				if(i!=0) {
-					Ice prevIce = ice_list.get(i-1);
+					Ice prevIce = ice_list.get(i-1);//assumption 
 					double prevExt = prevIce.getExt();
 					Object ext_diff = 0;
 					if(currExt > 0 && prevExt > 0) {
@@ -183,7 +183,7 @@ public class MidTermExam {
 		}
 
 		System.out.println("\n"+txt_maxAvgExt_key+" had the highest avgerage ice extent");
-		System.out.println("\n"+txt_minAvgExt_key+" had the highest avgerage ice extent");
+		System.out.println("\n"+txt_minAvgExt_key+" had the lowest avgerage ice extent");
 		
 		ArrayList<Ice> ice_list = iceMap.get(maxAvgExt_key);
 		

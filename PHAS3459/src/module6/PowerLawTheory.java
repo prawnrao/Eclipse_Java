@@ -21,7 +21,7 @@ public class PowerLawTheory implements Theory {
 	 * defines the toString method, to print out a PowerLawTheory object
 	 */
 	public String toString() {
-		return "x^"+n;
+		return "y = x^"+n;
 
 	}
 }

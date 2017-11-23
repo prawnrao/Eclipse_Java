@@ -70,12 +70,14 @@ public class ExoplanetMain {
 		System.out.println("\nPlanet closest to earth is:"+all_data.get(minDis_i));
 	
 		for(String method: dataMap.keySet()) {
+			
 			ArrayList<Exoplanet> planet_list = new ArrayList<>();
 			planet_list = dataMap.get(method);//all players in team
-			ArrayList<Exoplanet> planet_method = new ArrayList<>();
+			//ArrayList<Exoplanet> planet_method = new ArrayList<>();
 			int minYear = Integer.MAX_VALUE;
 			double minMass = Double.MAX_VALUE;
 			int minMass_i = 0;
+			
 			for(int i = 0; i < planet_list.size();) {
 				Exoplanet currPlanet = planet_list.get(i);
 				int currYear = currPlanet.getYear();

@@ -9,9 +9,10 @@ public class ChiSquared implements GoodnessOfFitCalculator {
 	 * This is a goodnessOfFit method that calculates the chi-sq of a given data set and a given theory]
 	 */
 	public double goodnessOfFit(Collection<DataPoint> datapoints,Theory theory) {
-		//defining variables used in htis method
+		//defining variables used in this method
 		double xpoint,ypoint, eypoint, residual, chi_sq = 0;
 		
+		//creates a new arraylist of datapoint objects, and fills it with values from the Collection datapoints
 		ArrayList<DataPoint> arrayData = new ArrayList<>();
 		arrayData.addAll(datapoints);
 		
