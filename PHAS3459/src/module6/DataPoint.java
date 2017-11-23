@@ -1,6 +1,7 @@
 package module6;
 
 public class DataPoint {
+	
 	//member variables
 	protected double x, y;
 	protected double ey;
@@ -41,7 +42,9 @@ public class DataPoint {
 		return ey;
 	}
 	
-	//defines the toString method, to print out a datapoint
+	/**
+	 * defines the toString method, to print out a DataPoint object
+	 */
 	public String toString() {
 		return "x = "+ x + ", y = "+ y + " +- "+ ey;
 		

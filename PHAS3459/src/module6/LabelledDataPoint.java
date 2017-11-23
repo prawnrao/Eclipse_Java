@@ -1,6 +1,7 @@
 package module6;
 
 public class LabelledDataPoint extends DataPoint{
+	
 	public String label;
 
 	/**
@@ -16,7 +17,7 @@ public class LabelledDataPoint extends DataPoint{
 	}
 
 	/**
-	 * defines the toString method, to print out a datapoint
+	 * defines the toString method, to print out a LabelledDataPoint
 	 */
 	public String toString() {
 		return label +": x = "+ x + ", y = "+ y + " +- "+ ey;

@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class TestDataPoint {
+	
 	/**
 	 * Creates an array list of datapoints
 	 * @param urlName
@@ -34,13 +34,14 @@ public class TestDataPoint {
 
 			DataPoint datapoint = new DataPoint(x,y,ey);
 
+			//for rows with more columns it outputs a labelled datapoint instead
 			if(s.hasNext()){
 				String label =s.next();
 				datapoint = new LabelledDataPoint(x,y,ey,label);
 				data.add(datapoint);
 			}
 			else {
-				data.add(datapoint);
+				data.add(datapoint);//appends the arraylist of data
 			}
 			s.close();
 		}

@@ -5,11 +5,11 @@ import java.util.Collection;
 
 public class ChiSquared implements GoodnessOfFitCalculator {
 	
-//	public ChiSquared(){
-//		
-//	}
-	
+	/**
+	 * This is a goodnessOfFit method that calculates the chi-sq of a given data set and a given theory]
+	 */
 	public double goodnessOfFit(Collection<DataPoint> datapoints,Theory theory) {
+		//defining variables used in htis method
 		double xpoint,ypoint, eypoint, residual, chi_sq = 0;
 		
 		ArrayList<DataPoint> arrayData = new ArrayList<>();

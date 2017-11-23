@@ -1,10 +1,10 @@
 package module6;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public interface GoodnessOfFitCalculator {
 
-	public double goodnessOfFit( Collection<DataPoint> datapoints,Theory theory);
+	//defines the goodness of fit interface
+	public double goodnessOfFit(Collection<DataPoint> datapoints,Theory theory);
 	
 }
