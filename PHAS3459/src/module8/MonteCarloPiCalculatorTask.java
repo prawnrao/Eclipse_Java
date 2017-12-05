@@ -8,7 +8,7 @@ public class MonteCarloPiCalculatorTask implements Callable <Double> {
 	private final long n_points;//Member variable
 	
 	/**
-	 * Constructor with the input of the number of points in the MonteCarlo similation.
+	 * Constructor with the input of the number of points in the MonteCarlo simulation.
 	 * @param nPoints
 	 */
 	public MonteCarloPiCalculatorTask(long nPoints) {

@@ -3,13 +3,14 @@ package module8;
 import java.util.ArrayList;
 
 public class PrimeNumberTask implements Runnable{
+	private int n = 2;//initialisation
 	/**
 	 * Run Method that breaks when the thread is interrupted
 	 */
 	public void run() {
 
 		ArrayList<Integer> PrimeNumbers = new ArrayList<>(); //defines an arrayList that will contain all prime numbers
-		int n = 2;//initialisation
+		
 
 		while(!Thread.currentThread().isInterrupted()) {//while loop is broken when the thread is interrupted
 			boolean b = false;//initialisation of boolean
@@ -23,7 +24,7 @@ public class PrimeNumberTask implements Runnable{
 			for(int i=2;i<n;i++) {
 				if(n%i==0) {
 					b = true;
-					break;//breaks the for loop, the first instance that n mod i is zero 
+					break;//breaks the for loop, the first instance that n is divisible by i
 				}
 			}
 
@@ -32,6 +33,9 @@ public class PrimeNumberTask implements Runnable{
 			}
 			n++;
 		}
-		System.out.println(PrimeNumbers);//prints arrayList of primes to the console
+		
+		int size = PrimeNumbers.size();//number of primes
+		int largest = PrimeNumbers.get(size-1);//largest prime
+		System.out.println("Largest integer checked: " + n + "\nNumber of primes found: "+ size +"\nLargest prime found: "+ largest );
 	}
 }
