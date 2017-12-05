@@ -15,6 +15,7 @@ public class MonteCarloPiCalculatorTask implements Callable <Double> {
 		this.n_points = nPoints;
 	}
 
+
 	@Override
 	public Double call() {
 		
