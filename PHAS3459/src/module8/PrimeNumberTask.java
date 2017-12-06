@@ -21,7 +21,7 @@ public class PrimeNumberTask implements Runnable{
 				continue;//continues the while loop
 			}
 
-			for(int i=2;i<n;i++) {
+			for(int i=2;i<Math.sqrt(n);i++) {
 				if(n%i==0) {
 					b = true;
 					break;//breaks the for loop, the first instance that n is divisible by i
@@ -31,7 +31,7 @@ public class PrimeNumberTask implements Runnable{
 			if (b == false) {//if n is not divisible by any i 
 				PrimeNumbers.add(n);//appends arrayList of primes
 			}
-			n++;
+			n= n + 2;
 		}
 		
 		int size = PrimeNumbers.size();//number of primes

@@ -66,7 +66,7 @@ public class ThreadsTimer {
 				+ "\nhowever the value of pi is not better."
 				+ "\nThis is because the value of pi calculated is dependent on the number of random points, not how long "
 				+ "\nit takes to calculate them. The multi-threaded task is significantly faster becasue each thread runs"
-				+ "\n1/n number of points where n is the number of threads. However each thread has less number of random points"
-				+ "\nand hence the value of pi will be less accurate and less precise.");
+				+ "\n1/n number of points where n is the number of threads. However each thread has less number of random"
+				+ "\npoints and hence the value of pi will be less accurate and less precise.");
 	}
 }
