@@ -33,8 +33,8 @@ public class PrimeSieve {
 		double n_tot = (double) n;
 		System.out.println("The number of primes <= " + n + " is " + primes);
 		System.out.println("Ratio of primes to all integers is: " + n_p/n_tot);
-		
-		
+
+
 	}
 
 }
