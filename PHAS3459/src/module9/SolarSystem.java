@@ -10,7 +10,7 @@ public class SolarSystem extends JPanel {
 		JFrame frame = new JFrame("Swing graphics example");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SSmodel model = new SSmodel(400,400);
-		Graphics g = new Graphics();
+		//Graphics g = new Graphics();
 		model.drawSpaceObject(g);
 		frame.add(model);       // Add panel to frame
 		frame.pack();           // Set component sizes and layout
