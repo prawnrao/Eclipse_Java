@@ -11,10 +11,10 @@ public class Animation {
   public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
-        JFrame frame = new JFrame("Animation demo");
+        JFrame frame = new JFrame("Solar System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(250,300);
-        JPanel panel = new AnimationPanel(200, 200, 10);
+        frame.setSize(1900,1000);
+        AnimationPanel panel = new AnimationPanel(1900,1000);
         frame.add(panel);
         frame.setVisible(true);
       }
