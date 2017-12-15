@@ -1,36 +1,30 @@
 package module9;
 
-import java.awt.*;
 import javax.swing.*;
 
-public class SolarSystem extends JPanel {
+public class SolarSystem {
 
-	/** Create and display a JFrame containing a LinesPanel. */
-	private static void createAndDisplayGui() {
-		JFrame frame = new JFrame("Swing graphics example");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SSmodel model = new SSmodel(400,400);
-		//Graphics g = new Graphics();
-		model.drawSpaceObject(g);
-		frame.add(model);       // Add panel to frame
-		frame.pack();           // Set component sizes and layout
-		frame.setVisible(true); // Display the resulting frame
-		Sun Sun = new Sun(0.0,0.0,0.0,50.0,Color.YELLOW);
-//		Planet Mercury = new Planet();
-//		Planet Venus = new Planet();
-//		Planet Earth = new Planet();
-//		Planet Mars = new Planet();
-		model.drawSpaceObject(Sun);
-	}
-
-	/** Call method to create and display GUI. */
 	public static void main(String[] args) {
-
+		// call method to create and display GUI
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				createAndDisplayGui();
 			}
 		});
+
+	}
+
+	public static void createAndDisplayGui() {
+		JFrame frame = new JFrame("Solar System");
+
+		// exit application if window is closed
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GraphicsPanel panel = new GraphicsPanel(1920,1080,1);
+		panel.createStarField(1920,1080,3);
+		panel.createAstroidField(1920, 1080, 3);
+		frame.add(panel); // add label to frame
+		frame.pack(); // set component sizes and layout
+		frame.setVisible(true); // display resulting frame
 	}
 
 }
