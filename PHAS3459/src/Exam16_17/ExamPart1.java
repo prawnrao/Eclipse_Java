@@ -9,53 +9,86 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ExamPart1 {
-	public static Info infoData(String urlName) throws IOException {
+
+
+	/**
+	 * Method that unpacks an ArrayList of Recording Objects from a given URL
+	 * @param urlName
+	 * @return
+	 * @throws IOException
+	 */
+	public static ArrayList<Recording> recData(String urlName) throws IOException {
 		URL url = new URL(urlName);
 		InputStream is = url.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		String line = "";
-		Info info = null;
+		Recording Recording = null;
+		ArrayList<Recording> Recordings = new ArrayList<>();
 
 		while ((line=br.readLine()) != null){
-			info = Info.parseData(line);
-		}
-		return info;
-	}
-
-	public static ArrayList<Instrument> instruData(String urlName) throws IOException {
-		URL url = new URL(urlName);
-		InputStream is = url.openStream();
-		InputStreamReader isr = new InputStreamReader(is);
-		BufferedReader br = new BufferedReader(isr);
-		String line = "";
-		Instrument instrument = null;
-		ArrayList<Instrument> instruments = new ArrayList<>();
-
-		while ((line=br.readLine()) != null){
-			instrument = Instrument.parseData(line);
-			instruments.add(instrument);
+			Recording = Recording.parseData(line);
+			Recordings.add(Recording);
 		}
 
-		return instruments;
+		return Recordings;
 	}
 
-	public static HashMap<Instrument,Info> soundMap(ArrayList<Instrument> instruments,ArrayList<String> urlList) throws IOException{
-		HashMap<Instrument, Info> map = new HashMap<>();
+	/**
+	 * Method that creates a HashMap of Recording and Info objects
+	 * @param Recordings
+	 * @param urlList
+	 * @return
+	 * @throws IOException
+	 */
+	public static HashMap<Recording,Info> soundMap(ArrayList<Recording> Recordings,ArrayList<String> urlList) throws IOException{
+		HashMap<Recording, Info> map = new HashMap<>();
 
-		for (Instrument i: instruments) {
+		for (Recording i: Recordings) {
+
 			String fn = i.getFileName();
 			if (fn != "") {
 				for(String u :urlList) {
 					if(u.contains(fn)) {
 						Info info;
-						info = infoData(u);
+						info = Info.parseData(u);
 						map.put(i, info);
 					}
 				}
 			}
 		}
 		return map;
+	}
+
+	/**
+	 * Method to calculate the duration of a given recording
+	 * @param info
+	 * @return
+	 */
+	public static double duration(Info info) {
+		double f = info.getFreq();
+		int N = info.getN();
+		return N/f;
+	}
+
+	/**
+	 * Method to calculate the amplitude for a given recording
+	 * @param info
+	 * @return
+	 */
+	public static double amplitude(Info info) {
+		ArrayList<Double> amp = info.getAmp();
+		double sum = 0;
+		double nSq =0;
+		//For loop over entire array of amplitude values
+		for(double n : amp) {
+			nSq = n*n;
+
+			sum += nSq;
+		}
+		double rms = Math.sqrt(sum/info.getN());
+		double amplitude = 20*Math.log10(rms/info.getMaxAmp());
+		return amplitude;
 	}
 
 	public static void main(String[]args) {
@@ -67,8 +100,7 @@ public class ExamPart1 {
 		String url6 = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genB.txt";
 		String url7 = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genC.txt";
 		String urlIndex = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/index.txt";
-		HashMap<Instrument,Info> SoundMap = new HashMap<>();
-
+		HashMap<Recording,Info> SoundMap = new HashMap<>();
 		ArrayList<String> urlList = new ArrayList<>();
 		urlList.add(url1);
 		urlList.add(url2);
@@ -78,12 +110,33 @@ public class ExamPart1 {
 		urlList.add(url6);
 		urlList.add(url7);
 
-		ArrayList<Instrument> instru = new ArrayList<>();
+		ArrayList<Recording> rec = new ArrayList<>();
 
 		try {
-			instru = instruData(urlIndex);  
-			SoundMap = soundMap(instru,urlList);
-			System.out.println(SoundMap);
+			rec = recData(urlIndex);  
+			SoundMap = soundMap(rec,urlList);
+
+			//For loop over the entire HashMap of recordings
+			for(Recording r:SoundMap.keySet()) {				
+				Info info;
+
+				//gets info for a specific recording
+				info = SoundMap.get(r);
+
+				//gets ArrayList of amplitude values
+				ArrayList<Double> amp = info.getAmp();
+
+				//outputs the file name
+				System.out.println("Recording:\t"+r.getFileName());
+				//outputs the Recording name
+				System.out.println("Instrument:\t"+r.getInstrumentName());
+				//outputs the duration
+				System.out.println("Duration:\t"+ duration(info)+" s");
+				//outputs the amplitude
+				System.out.println("Amplitude:\t" + amplitude(info)+" dFBS\n");
+
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
