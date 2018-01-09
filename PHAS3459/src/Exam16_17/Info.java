@@ -38,9 +38,25 @@ public class Info {
 		Info info = new Info(freq1,N1,maxAmp1,amp1);
 		return info;
 	}
-
+	
+	public int getN() {
+		return N;
+	}
+	
+	public int getFreq() {
+		return freq;
+	}
+	
+	public int getMaxAmp() {
+		return maxAmp;
+	}
+	
+	public ArrayList<Integer> getAmp(){
+		return amp;
+	}
+	
 	public String toString(){
-		String print = "frequency: "+freq+"N: "+N+"Maximum Amplitude: "+maxAmp+"\n";//+ " Amplitudes: "+amp;
+		String print = "\n\tfrequency: "+freq+"\n\tN: "+N+"\n\tMaximum Amplitude: "+maxAmp+"\n\n";//+ " Amplitudes: "+amp;
 		return print;
 	}
 }
