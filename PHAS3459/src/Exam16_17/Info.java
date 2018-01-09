@@ -68,4 +68,35 @@ public class Info {
 		String print = "\n\tfrequency: "+freq+"\n\tN: "+N+"\n\tMaximum Amplitude: "+maxAmp+"\n\n"; //" Amplitudes: "+amp+"\n\n";
 		return print;
 	}
+	
+	/**
+	 * Method to calculate the duration of a given recording
+	 * @param info
+	 * @return
+	 */
+	public static double duration(Info info) {
+		double f = info.getFreq();
+		int N = info.getN();
+		return N/f;
+	}
+
+	/**
+	 * Method to calculate the amplitude for a given recording
+	 * @param info
+	 * @return
+	 */
+	public static double amplitude(Info info) {
+		ArrayList<Double> amp = info.getAmp();
+		double sum = 0;
+		double nSq =0;
+		//For loop over entire array of amplitude values
+		for(double n : amp) {
+			nSq = n*n;
+
+			sum += nSq;
+		}
+		double rms = Math.sqrt(sum/info.getN());
+		double amplitude = 20*Math.log10(rms/info.getMaxAmp());
+		return amplitude;
+	}
 }
