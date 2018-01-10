@@ -3,11 +3,7 @@ package module9;
 import javax.swing.*;
 
 public class SolarSystem {
-	
-	/**
-	 * The main method that creates and displays the GUI
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
 		// call method to create and display GUI
 		SwingUtilities.invokeLater(new Runnable() {
@@ -18,9 +14,6 @@ public class SolarSystem {
 
 	}
 
-	/**
-	 * Method that creates a JFrame, graphics panel. 
-	 */
 	public static void createAndDisplayGui() {
 		JFrame frame = new JFrame("Solar System");
 

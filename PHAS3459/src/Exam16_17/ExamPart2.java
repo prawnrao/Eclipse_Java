@@ -1,16 +1,11 @@
 package Exam16_17;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExamPart1 {
-
-	public static void main(String[]args) {
+public class ExamPart2 {
+	public static void main (String[] args) {
 		
 		String url1 = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt";
 		String url2 = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording02.txt";
@@ -29,9 +24,8 @@ public class ExamPart1 {
 		urlList.add(url5);
 		urlList.add(url6);
 		urlList.add(url7);
-
 		ArrayList<Recording> rec = new ArrayList<>();
-
+		
 		try {
 			rec = Recording.recData(urlIndex);  
 			SoundMap = Recording.soundMap(rec,urlList);
@@ -39,23 +33,23 @@ public class ExamPart1 {
 			//For loop over the entire HashMap of recordings
 			for(Recording r:SoundMap.keySet()) {				
 				Info info;
+
 				//gets info for a specific recording
 				info = SoundMap.get(r);
-				//gets ArrayList of amplitude values
-				ArrayList<Double> amp = info.getAmp();
+				
+				ClassifyDuration cd = new ClassifyDuration();
+				ClassifyVolume cv = new ClassifyVolume();
 				//outputs the file name
 				System.out.println("Recording:\t"+r.getFileName());
 				//outputs the Recording name
 				System.out.println("Instrument:\t"+r.getInstrumentName());
-				//outputs the duration
-				System.out.println("Duration:\t"+ Info.duration(info)+" s");
-				//outputs the amplitude
-				System.out.println("Amplitude:\t" + Info.amplitude(info)+" dFBS\n");
+				System.out.println("Duration:\t"+cd.classify(info));
+				System.out.println("Volume:\t\t"+cv.classify(info)+"\n");
+				
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
