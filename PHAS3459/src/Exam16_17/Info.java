@@ -25,7 +25,13 @@ public class Info {
 		this.amp = amp;
 
 	}
-
+	
+	/**
+	 * Method to parse the data that returns a info object
+	 * @param urlName
+	 * @return
+	 * @throws IOException
+	 */
 	public static Info parseData(String urlName) throws IOException {
 		URL url = new URL(urlName);
 		InputStream is = url.openStream();

@@ -6,7 +6,7 @@ public class ClassifyDuration implements ClassifySounds{
 
 		double t = Info.duration(i);
 		String s = "";
-		
+
 		if(t<1) {
 			s = "short";
 		}

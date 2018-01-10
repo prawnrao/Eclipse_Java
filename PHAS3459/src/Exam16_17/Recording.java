@@ -13,12 +13,23 @@ import java.util.Scanner;
 public class Recording {
 	String fileName;
 	String RecordingName;
-
+	
+	/**
+	 * Constructor for a Recording object
+	 * @param fileName
+	 * @param RecordingName
+	 */
 	public Recording(String fileName, String RecordingName){
 		this.fileName = fileName;
 		this.RecordingName = RecordingName;
 	}
-
+	
+	/**
+	 * Method to parse the data to make a recording object
+	 * @param line
+	 * @return
+	 * @throws IOException
+	 */
 	public static Recording parseData(String line) throws IOException {
 		Scanner s = new Scanner(line);
 		String fileName="";

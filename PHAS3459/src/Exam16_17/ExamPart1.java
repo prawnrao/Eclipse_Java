@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class ExamPart1 {
 
 	public static void main(String[]args) {
+		
 		String url1 = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt";
 		String url2 = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording02.txt";
 		String url3 = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording03.txt";
@@ -38,13 +39,10 @@ public class ExamPart1 {
 			//For loop over the entire HashMap of recordings
 			for(Recording r:SoundMap.keySet()) {				
 				Info info;
-
 				//gets info for a specific recording
 				info = SoundMap.get(r);
-
 				//gets ArrayList of amplitude values
 				ArrayList<Double> amp = info.getAmp();
-
 				//outputs the file name
 				System.out.println("Recording:\t"+r.getFileName());
 				//outputs the Recording name
