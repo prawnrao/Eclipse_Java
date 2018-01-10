@@ -162,6 +162,5 @@ public class ExamPart1 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

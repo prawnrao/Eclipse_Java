@@ -28,7 +28,7 @@ public class Recording {
 	public String getFileName() {
 		return fileName;
 	}
-	
+
 	public String getInstrumentName() {
 		return RecordingName;
 	}
@@ -38,4 +38,5 @@ public class Recording {
 		String print = "\tFilename: "+fileName+"\tRecording Name: "+RecordingName;
 		return print;
 	}
+	
 }
