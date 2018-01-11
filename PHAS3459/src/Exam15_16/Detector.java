@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
 public class Detector {
-	String distance;
+	double distance;
 	String DetectorName;
 	
 	/**
@@ -19,7 +18,7 @@ public class Detector {
 	 * @param distance
 	 * @param DetectorName
 	 */
-	public Detector(String DetectorName,String distance){
+	public Detector(String DetectorName,double distance){
 		this.distance = distance;
 		this.DetectorName = DetectorName;
 	}
@@ -27,25 +26,33 @@ public class Detector {
 	/**
 	 * Method to parse the data to make a Detector object
 	 * @param line
-	 * @return
+	 * @return Detector
 	 * @throws IOException
 	 */
 	public static Detector parseData(String line) throws IOException {
 		Scanner s = new Scanner(line);
-		String distance="";
+		double distance=0;
 		String DetectorName="";
 		while (s.hasNext()) {
 			DetectorName = s.next();
-			distance = s.next();
+			distance = s.nextDouble();
 		}
 		Detector Detector = new Detector(DetectorName,distance);
 		return Detector;
 	}
-
-	public String getDistance() {
+	
+	/**
+	 * 
+	 * @return distance
+	 */
+	public double getDistance() {
 		return distance;
 	}
-
+	
+	/**
+	 * 
+	 * @return Detector Name
+	 */
 	public String getDetector() {
 		return DetectorName;
 	}
@@ -59,7 +66,7 @@ public class Detector {
 	/**
 	 * Method that unpacks an ArrayList of Detector Objects from a given URL
 	 * @param urlName
-	 * @return
+	 * @return ArrayList<Detector>
 	 * @throws IOException
 	 */
 	public static ArrayList<Detector> detData(String urlName) throws IOException {
@@ -75,7 +82,6 @@ public class Detector {
 			Detector = parseData(line);
 			Detectors.add(Detector);
 		}
-
 		return Detectors;
 	}
 }
