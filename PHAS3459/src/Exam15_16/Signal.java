@@ -110,7 +110,12 @@ public class Signal {
 		}
 		return index;//ns
 	}
-
+	
+	/**
+	 * Method that calculates the total number of signals
+	 * @param pulses
+	 * @return No of pulses
+	 */
 	public static int noSignal(ArrayList<ArrayList<Double>> pulses){
 		int sum = 0;
 		for(int i =0; i<pulses.size();i++) {

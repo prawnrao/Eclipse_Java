@@ -7,18 +7,21 @@ public class ClassifyFreq implements ClassifySounds{
 	public String classify(Info i) {
 
 		String s = "";
-		double s1 = spectralDensity(i,100);
-		double s2 = spectralDensity(i,400);
-		double s3 = spectralDensity(i,1000);
-
+		double s1 = Math.abs(spectralDensity(i,100));
+		System.out.println(s1);
+		double s2 = Math.abs(spectralDensity(i,400));
+		System.out.println(s2);
+		double s3 = Math.abs(spectralDensity(i,1000));
+		System.out.println(s3);
+		
 		if(s1>s2 && s1>s3) {
 			s = "low";
 		}
 		if(s2>s1 && s2>s3) {
 			s = "medium";
 		}
-		else {
-			s = "high";
+		if(s3>s1 && s3>s2) {
+		 	s = "high";
 		}
 
 		return s;

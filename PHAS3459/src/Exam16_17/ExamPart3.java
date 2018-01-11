@@ -43,7 +43,7 @@ public class ExamPart3 {
 				System.out.println("Recording:\t"+r.getFileName());
 				//outputs the Recording name
 				System.out.println("Instrument:\t"+r.getInstrumentName());
-				System.out.println("Duration:\t"+cf.classify(info)+"\n");
+				System.out.println("Pitch:\t\t"+cf.classify(info)+"\n");
 				
 			}
 
