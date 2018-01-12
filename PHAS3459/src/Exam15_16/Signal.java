@@ -41,6 +41,7 @@ public class Signal {
 		while(s.hasNext()) {
 			pulses.add(s.nextDouble());
 		}
+		
 		Signal signal = new Signal(name,pulses);
 		s.close();
 		return signal;

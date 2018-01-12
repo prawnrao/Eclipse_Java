@@ -34,6 +34,7 @@ public class DetectorMainPart2 {
 				for(ArrayList<Double> singlePulse : pulses) {
 					Time_threshold tt = new Time_threshold(1.0);
 					Time_Max tm = new Time_Max();
+					System.out.println(tt.arrival(singlePulse));
 					timeSum += tt.arrival(singlePulse); 
 					timeSum1 += tm.arrival(singlePulse);
 				}
