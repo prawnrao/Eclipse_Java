@@ -21,8 +21,7 @@ public class TidalSurge implements Stat {
 			}
 			index++;
 		}
-		System.out.println("\tDetails of maximum surge:\n"+tideList.get(maxIndex)+"\n\tSurge: "+maxSurge+"\n\n\n");
+		System.out.println("\tDetails of maximum surge:\n"+tideList.get(maxIndex)+"\n\tSurge: "+maxSurge+"m\n\n\n");
 		return maxSurge;
-	}
-	
+	}	
 }

@@ -18,6 +18,4 @@ public class MeanLevel implements Stat{
 		meanLevel = sum/levelList.size();
 		return meanLevel;
 	}
-	
-
 }

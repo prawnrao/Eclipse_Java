@@ -25,6 +25,4 @@ public class TidalRange implements Stat{
 		double levelDiff = maxLevel - minLevel;
 		return levelDiff;
 	}
-	
-
 }

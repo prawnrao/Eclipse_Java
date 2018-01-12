@@ -36,51 +36,71 @@ public class Exam {
 			HashMap<String, ArrayList<Tide>> mapPart3 = new HashMap<>();
 			ArrayList<Tide> allTides = new ArrayList<>();
 			ArrayList<Tide> allTidesPart3 = new ArrayList<>();
+			
 			//Unpacking the sites data 
 			sitesList = Sites.parseData(urlSites);
 			sitesListPart3 = Sites.parseData(urlSitesPart3);
-//			System.out.println(sitesList);
-//			System.out.println(sitesListPart3);
 			
 			//unpacking tide data
 			allTides = Tide.tideData(urlList);
 			allTidesPart3 = Tide.tideDataPart3(urlListPart3);
+			//unpacking the level data
 			levelList =Tide.levelData(allTides); 
 			levelListPart3 = Tide.levelData(allTidesPart3);
+			
+			//determining the max level
 			maxLevel= (Tide.maxLevel(levelList));
+			//finding the max tide from maxLevel
 			maxTide = (allTides.get((int) maxLevel.get(1)));
 			
+			//identifier of maxTide
 			String id = maxTide.getId();
+			//Site name of maxTide
 			String name = Tide.getName(id,sitesList);
+			//Output
 			System.out.println("\n\tThe details of the maximum level recorded:");
 			System.out.println("\tName:\t"+name);
 			System.out.println(maxTide+"\n\n");
 			
+			//Creates HashMaps of Site id and ArrayList of Tide objects
 			map = Tide.tideMap(allTides, sitesList);
 			mapPart3 = Tide.tideMap(allTidesPart3, sitesListPart3);
 			
-			//loops over the map for all sites
+			//loops over the map for all sites (part 1 and part 2)
 			for(String s:map.keySet()) {
-				ArrayList<Tide> thisTideList = map.get(s);//list of tide objects for a site
+				name = Tide.getName(s,sitesList);//gets the site name for the current id (s)
+				//gets an ArrayList of tide objects from map for id s
+				ArrayList<Tide> thisTideList = map.get(s);
+				//instantiates new implementations of the Stat interface
 				Stat ml = new MeanLevel();
 				Stat tr = new TidalRange();
 				Stat ts = new TidalSurge();
+				//variables to store Stat method results
 				double mean = 0;
 				double range = 0;
 				
 				mean = ml.stat(thisTideList);//calculates the mean level for a site
-				System.out.println("\t\tSite: "+s+"\n\tMean level was: "+mean+" m");
+				
+				System.out.println("------x------Site: "+s+"\tName: "+name+"------X------\n\n\tMean level was: "+mean+" m");
 				range = tr.stat(thisTideList);//calculates the tidal range for a site
+				
 				System.out.println("\tTidal range was: "+range+" m\n");
-				ts.stat(thisTideList);
+				ts.stat(thisTideList);//calculates the max tidal surge for a site
 			}
 			
-			System.out.println("\tPART 3 PART 3 PART 3 PART 3\n\n");
+			
+			System.out.println("-------x-------x-------PART 3-------x-------x--------\n\n");
+			//loops over the map for all sites (part 3)
 			for(String s: mapPart3.keySet()) {
+				
+				name = Tide.getName(s,sitesListPart3);
+				
 				ArrayList<Tide> thisTideList = mapPart3.get(s);//list of tide objects for a site
 				Stat ts = new TidalSurge();
-				System.out.println("\t\tSite: "+s);
-				ts.stat(thisTideList);
+				
+				System.out.println("------x------Site: "+s+"\tName: "+name+"------X------\n\n");
+				
+				ts.stat(thisTideList);//calculates the max tidal suge for a site
 
 			}
 		

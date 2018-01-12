@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class Tide {
 	 * @return ArrayList of Tide Objects
 	 * @throws IOException
 	 */
-	public static ArrayList<Tide> tideData(ArrayList<String> urlList) throws IOException{
+	public static ArrayList<Tide> tideData(ArrayList<String> urlList) throws IOException {
 		ArrayList<Tide> tideList = new ArrayList<>();
 		for(String s:urlList) {
 			URL url = new URL(s);
@@ -94,11 +95,11 @@ public class Tide {
 		max.add(maxIndex);
 		return max;
 	}
-
+	
+	//getter methods
 	public double getLevel() {
 		return level;
 	}
-
 	public String toString() {
 		String s = "";
 		s = "\tId: "+this.id+" Date: "+this.day+"/"+this.month+
@@ -106,11 +107,12 @@ public class Tide {
 				"\n\tLevel:\t"+this.level+"m  Predicted Level: "+this.predLevel+"m";
 		return s;
 	}
-
 	public String getId() {
 		return id;
 	}
-
+	public double getPredLevel() {
+		return predLevel;
+	}
 
 	/**
 	 * Determines a site name for an index
@@ -143,6 +145,12 @@ public class Tide {
 		return levelList;
 	}
 
+	/**
+	 * Creates a HashMap of string to ArrayList<Tide>
+	 * @param tideList
+	 * @param siteList
+	 * @return
+	 */
 	public static HashMap<String,ArrayList<Tide>> tideMap(ArrayList<Tide> tideList,ArrayList<Sites> siteList){
 		HashMap<String,ArrayList<Tide>> map = new HashMap<>();
 		
@@ -165,10 +173,6 @@ public class Tide {
 
 	}
 
-	public double getPredLevel() {
-		return predLevel;
-	}
-	
 	/**
 	 * Unpacks all the tide data from multiple URLs
 	 * @param urlList
