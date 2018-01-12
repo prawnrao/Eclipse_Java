@@ -3,7 +3,10 @@ package Exam15_16;
 import java.util.ArrayList;
 
 public class Time_Max implements TimePulse{
-
+	
+	/**
+	 * Method that calculates the arrival time of the maximum amplitude for a pulse
+	 */
 	public int arrival(ArrayList<Double> ar) {
 		double max_s = -Double.MAX_VALUE;
 		int index =0;

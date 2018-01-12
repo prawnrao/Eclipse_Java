@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Exam {
+public class TidalMain {
 	
 	public static void main(String[]args) {
 		

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExamPart2 {
+public class DetectorMainPart2 {
 	public static void main(String[] args) {
 		ArrayList<Detector> det = new ArrayList<>();
 		ArrayList<Signal> data = new ArrayList<>();

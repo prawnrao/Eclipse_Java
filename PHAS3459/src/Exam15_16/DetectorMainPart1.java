@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExamPart1 {
+public class DetectorMainPart1 {
 
 	public static void main(String[] args) {
 		ArrayList<Detector> det = new ArrayList<>();
@@ -16,9 +16,7 @@ public class ExamPart1 {
 		try {
 
 			det = Detector.detData(urlIndex);
-			//System.out.println(det+"\n");
 			data = Signal.signalData(urlData);
-			//System.out.println(data);
 			dataMap = Signal.signalMap(det,data);
 			
 			int sum = 0;
