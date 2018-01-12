@@ -12,7 +12,9 @@ import java.util.Scanner;
 public class Signal {
 	private ArrayList<Double> pulses;
 	private String name;
-
+	private double amp;
+	private int time;
+	
 	/**
 	 * Constructor
 	 * @param name
@@ -40,6 +42,7 @@ public class Signal {
 			pulses.add(s.nextDouble());
 		}
 		Signal signal = new Signal(name,pulses);
+		s.close();
 		return signal;
 	}
 
@@ -69,7 +72,7 @@ public class Signal {
 	 * toString method for printing Signal objects
 	 */
 	public String toString() {
-		String s = "\tDetector Name:\t"+name +"\n\tPulses:\t"+ pulses+"\n\n";
+		String s = "\tDetector Name:\t"+name +"\n\tPulses:\t"+ pulses+"\n";
 		return s;
 	}
 
@@ -88,6 +91,7 @@ public class Signal {
 	public ArrayList<Double> getPulse(){
 		return pulses;
 	}
+	
 	public static double amplitude(ArrayList<Double> signals) {
 		double max_s = -Double.MAX_VALUE;
 		for(double s: signals) {

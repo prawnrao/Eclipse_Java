@@ -101,9 +101,9 @@ public class Tide {
 
 	public String toString() {
 		String s = "";
-		s = "Id:\t"+this.id+"\tDate:\t"+this.day+"/"+this.month+
-				"/"+this.year+"\tTime:\t"+this.hour+":"+this.min+
-				"\nLevel:\t"+this.level+" m\tPredicted Level: "+this.predLevel+" m\n\n";
+		s = "\tId: "+this.id+" Date: "+this.day+"/"+this.month+
+				"/"+this.year+" Time: "+this.hour+":"+this.min+
+				"\n\tLevel:\t"+this.level+"m  Predicted Level: "+this.predLevel+"m";
 		return s;
 	}
 
@@ -163,5 +163,40 @@ public class Tide {
 		}
 		return map;
 
+	}
+
+	public double getPredLevel() {
+		return predLevel;
+	}
+	
+	/**
+	 * Unpacks all the tide data from multiple URLs
+	 * @param urlList
+	 * @return ArrayList of Tide Objects
+	 * @throws IOException
+	 */
+	public static ArrayList<Tide> tideDataPart3(ArrayList<String> urlList) throws IOException{
+		ArrayList<Tide> tideList = new ArrayList<>();
+		for(String s:urlList) {
+			URL url = new URL(s);
+			InputStream is = url.openStream();
+			InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+			Scanner sc = new Scanner(br);
+			Tide tide;
+			while(sc.hasNext()) {
+				int year = sc.nextInt();
+				int month = sc.nextInt();
+				int day = sc.nextInt();
+				int hour = sc.nextInt();
+				int min = sc.nextInt();
+				String id = sc.next();
+				double level = sc.nextDouble();
+				double predLevel = sc.nextDouble();
+				tide = new Tide(id,year,month,day,hour,min,level,predLevel);
+				tideList.add(tide);
+			}
+		}
+		return tideList;
 	}
 }
