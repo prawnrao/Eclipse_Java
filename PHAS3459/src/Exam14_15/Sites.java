@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Sites {
 	private String site;
 	private String port;
@@ -18,6 +17,12 @@ public class Sites {
 		this.port = port;
 	}
 
+	/**
+	 * Unpacks the site data from a URL
+	 * @param urlName
+	 * @return ArrayList of site objects
+	 * @throws IOException
+	 */
 	public static ArrayList<Sites> parseData(String urlName) throws IOException {
 		URL url = new URL(urlName);
 		InputStream is = url.openStream();
@@ -49,7 +54,14 @@ public class Sites {
 	
 	public String toString() {
 		String s = "";
-		s = this.site +" "+this.port;
+		s = this.site +" "+this.port+"\n";
 		return s;
+	}
+	
+	public String getSiteName() {
+		return site;
+	}
+	public String getPort() {
+		return port;
 	}
 }
