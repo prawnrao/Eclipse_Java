@@ -92,22 +92,22 @@ public class PlantsMain {
 			ArrayList<ArrayList<Double>> findKeyList = new ArrayList<>();
 			ArrayList<String> nameList = new ArrayList<>();
 			
-			FilterSpecies fd1 = new FilterByDist(-30.967,75.430,155);
-			filtSurList1 = fd1.filerSp(surList3);
-			System.out.println(filtSurList1);
-			
-			for(String s: surMapAnimal.keySet()) {
-				name = Species.getName(s, spAnimal);
-				System.out.println(name);
-				findKeyList = surMapAnimal.get(s);
-				for(ArrayList<Double> ar :filtSurList1) {
-					if(findKeyList.contains(ar)) {
-						nameList.add(name);
-					}
-				}
-			}
-			System.out.println(findKeyList);
-			System.out.println(nameList);
+//			FilterSpecies fd1 = new FilterByDist(-30.967,75.430,155);
+//			filtSurList1 = fd1.filerSp(surList3);
+//			System.out.println(filtSurList1);
+//			
+//			for(String s: surMapAnimal.keySet()) {
+//				name = Species.getName(s, spAnimal);
+//				System.out.println(name);
+//				findKeyList = surMapAnimal.get(s);
+//				for(ArrayList<Double> ar :filtSurList1) {
+//					if(findKeyList.contains(ar)) {
+//						nameList.add(name);
+//					}
+//				}
+//			}
+//			System.out.println(findKeyList);
+//			System.out.println(nameList);
 			
 		} catch (IOException e) {
 
