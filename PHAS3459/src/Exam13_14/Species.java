@@ -70,7 +70,28 @@ public class Species {
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
+		
 		return name;
+	}
+	
+	public static String getName(String s,ArrayList<Species> spPlant) {
+		String name ="";
+		for(Species sp :spPlant) {
+			if(s.equals(sp.getID())) {
+				name = sp.getName();
+				break;
+			}
+		}
+		return name;
+	}
+	public static String getID(String s,ArrayList<Species> spPlant) {
+		String id ="";
+		for(Species sp :spPlant) {
+			if(s.equals(sp.getName())) {
+				id = sp.getID();
+				break;
+			}
+		}
+		return id;
 	}
 }
