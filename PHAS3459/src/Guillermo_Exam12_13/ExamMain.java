@@ -99,6 +99,7 @@ public class ExamMain {
 			for (ArrayList<Double> backgroundpoint: finalBack) {
 				if (energyRound == backgroundpoint.get(0)) {
 					backgroundpoint.set(2, backgroundpoint.get(2)+1);
+					break;
 				}
 			}
 		}
