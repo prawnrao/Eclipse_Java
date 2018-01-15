@@ -11,16 +11,16 @@ import java.util.Scanner;
 
 public class Recording {
 	//Member Variables
-	private int N;
-	private double f;
-	private double maxA;
-	private ArrayList<Double> ampList;
-	private String instruName;
-	private double duration;
-	private double amplitude;
-	private String recName;
-	private double rmsA;
-	
+	int N;
+	double f;
+	double maxA;
+	ArrayList<Double> ampList;
+	String instruName;
+	double duration;
+	double amplitude;
+	String recName;
+	double rmsA;
+
 	/**
 	 * Constructor of a recording object
 	 * @param f
@@ -29,27 +29,27 @@ public class Recording {
 	 * @param ampList
 	 * @param instruName
 	 */
-	public Recording(double f, int N, double maxA, ArrayList<Double> ampList) {
-		//assigning values to member vairables
+	public Recording(double f, int N, double maxA, ArrayList<Double> ampList){
+		//assigning values to member variables
 		this.f = f;
 		this.N = N;
 		this.maxA = maxA;
 		this.ampList = ampList;
-		
+
 		//calculates duration
 		duration = N/f;
-		
+
 		//calculates rmsAmp
 		double sum = 0;
 		for(double d : ampList) {//loop over all amplitude values
-			sum+=(d*d);
+			sum+=(d*d);//sum of amplitude square
 		}
 		rmsA = Math.sqrt(sum/N);
-		
+
 		//calculates amplitude
 		amplitude = 20*Math.log10(rmsA/maxA);
 	}
-	
+
 	/**
 	 * Method to unpack recording data from URL
 	 * @param urlName
@@ -62,20 +62,20 @@ public class Recording {
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		Scanner sc = new Scanner(br);
-		
+
 		double f = sc.nextDouble();//frequency
 		int N = sc.nextInt();//number of recordings
 		double maxA =sc.nextDouble();//max amplitude
-		
+
 		//ArrayList of individual amplitudes
 		ArrayList<Double> ampList = new ArrayList<>(N);
-		while(sc.hasNext()) {
+		while(sc.hasNext()){
 			ampList.add(sc.nextDouble());//individual amplitude values
 		}
 		Recording rec = new Recording(f,N,maxA,ampList);
 		return rec;
 	}
-	
+
 	/**
 	 * Method to unpack index from URL
 	 * @param urlName
@@ -88,7 +88,7 @@ public class Recording {
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		String line = "";
-		
+
 		//ArrayList of each line that contains two strings, recording name and instrument name
 		ArrayList<ArrayList<String>> index = new ArrayList<>();
 		while((line = br.readLine()) != null) {
@@ -100,7 +100,7 @@ public class Recording {
 		}
 		return index;
 	}
-	
+
 	/**
 	 * Method to create a HashMap of recording name to Recording object
 	 * @param urlIndex
@@ -109,10 +109,10 @@ public class Recording {
 	 * @throws IOException
 	 */
 	public static HashMap<String, Recording> recMap(String urlIndex, ArrayList<String> urlList) throws IOException{
-		
+
 		HashMap<String,Recording> recMap = new HashMap<>();
 		ArrayList<ArrayList<String>> index = recIndex(urlIndex);//unpacks index data
-		
+
 		//loops over index elements
 		for(ArrayList<String> s: index) {
 			String fileName = s.get(0);//gets file name from index element
@@ -131,10 +131,9 @@ public class Recording {
 				}
 			}
 		}
-		
 		return recMap;
 	}
-	
+
 
 	/**
 	 * Setter/Getter Methods
@@ -157,16 +156,16 @@ public class Recording {
 	private void setInstruName(String s) {
 		this.instruName =s;
 	}
-	private void setRecName(String s) {
+	private void setRecName(String s){
 		recName = s;
 	}
-	
+
 	/**
 	 * toString method to print out required information of a recording object
 	 */
 	public String toString() {
 		String s = "";
-		s = "Recording: "+recName+",  Instrument: "+instruName+",  Duration: "+duration+"s,  Amplitude: "+amplitude+" dBFS";
+		s = "\n  Recording: "+recName+",  Instrument: "+instruName+"\n  Duration: "+duration+"s,  Amplitude: "+amplitude+" dBFS";
 		return s;
 	}
 }
