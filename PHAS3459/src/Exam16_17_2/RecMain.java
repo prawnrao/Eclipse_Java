@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RecMain {
-
+	
+	/**
+	 * Main Method.
+	 * @param args
+	 */
 	public static void main(String[]args){
 
 		String genA_URL = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/genA.txt";
@@ -25,14 +29,20 @@ public class RecMain {
 
 			//looping over all recordings in the HashMap
 			for(String s :recMap.keySet()) {
+				
 				Recording rec = recMap.get(s);
 				System.out.println(rec);
+				
 				Classify cd = new ClassifyDuration(1);//threshold of 1 second to be classified as long
 				System.out.println(cd.classify(rec));
+				
 				Classify ca = new ClassifyAmplitude(-20);//threshold of -20dBFS to be classified as loud
 				System.out.println(ca.classify(rec));
+				
+				//100Hz,400Hz,1000Hz thresholds for low, medium, high spectral densities
 				Classify csd = new ClassifySpectralDensity(100,400,1000);
 				System.out.println(csd.classify(rec));
+				
 			}
 			
 		} catch (IOException e) {

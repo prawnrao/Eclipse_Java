@@ -1,6 +1,9 @@
 package Exam16_17_2;
 
 public class ClassifyDuration implements Classify{
+	/**
+	 * Member variable
+	 */
 	double thresh;
 
 	/**
@@ -16,12 +19,12 @@ public class ClassifyDuration implements Classify{
 	 */
 	@Override
 	public String classify(Recording rec) {
-		String s ="  Duration:";
+		String s ="  Duration Classification:";
 		if(rec.duration > thresh) {
-			s += " long";
+			s += " Long";
 		}
 		else {
-			s += "  short";
+			s += "  Short";
 		}
 		return s;
 	}

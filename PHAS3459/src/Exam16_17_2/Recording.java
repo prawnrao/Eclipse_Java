@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Recording {
-	//Member Variables
+	/**
+	 * Member Variables
+	 */
 	int N;
 	double f;
 	double maxA;
@@ -136,8 +138,18 @@ public class Recording {
 
 
 	/**
+	 * toString method to print out required information of a recording object
+	 */
+	public String toString() {
+		String s = "";
+		s = "\n  Recording: "+recName+",  Instrument: "+instruName+"\n  Duration: "+duration+"s,  Amplitude: "+amplitude+" dBFS";
+		return s;
+	}
+
+	/**
 	 * Setter/Getter Methods
 	 */
+
 	public double getF() {
 		return f;
 	}
@@ -159,13 +171,6 @@ public class Recording {
 	private void setRecName(String s){
 		recName = s;
 	}
-
-	/**
-	 * toString method to print out required information of a recording object
-	 */
-	public String toString() {
-		String s = "";
-		s = "\n  Recording: "+recName+",  Instrument: "+instruName+"\n  Duration: "+duration+"s,  Amplitude: "+amplitude+" dBFS";
-		return s;
-	}
+	
 }
+

@@ -1,6 +1,9 @@
 package Exam16_17_2;
 
 public class ClassifySpectralDensity implements Classify{
+	/**
+	 * Member Variables
+	 */
 	private double low;
 	private double med;
 	private double high;
@@ -22,7 +25,7 @@ public class ClassifySpectralDensity implements Classify{
 	 */
 	@Override
 	public String classify(Recording rec) {
-		String s = "  Spectral Density: ";
+		String s = "  Spectral Density Classification: ";
 		//calculates the spectral densities for each of the frequencies 
 		double sd1 = spectralDensity(rec,low);
 		double sd2 = spectralDensity(rec,med);
@@ -30,13 +33,14 @@ public class ClassifySpectralDensity implements Classify{
 		
 		//checks which of the three spectral densities is the largest
 		if(sd1>sd2 && sd1>sd3) {
-			s += "low";
-		} else if(sd2>sd1 && sd2>sd3) {
-			s += "medium";
-		} else if(sd3>sd1 && sd3>sd1) {
-			s += "high";
+			s += "Low";
+		} 
+		else if(sd2>sd1 && sd2>sd3) {
+			s += "Medium";
 		}
-
+		else if(sd3>sd1 && sd3>sd1) {
+			s += "High";
+		}
 		return s;//returns the classification string
 	}
 

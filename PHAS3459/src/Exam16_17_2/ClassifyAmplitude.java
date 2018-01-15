@@ -1,6 +1,9 @@
 package Exam16_17_2;
 
 public class ClassifyAmplitude implements Classify{
+	/**
+	 * Member variable
+	 */
 	double thesh;
 	
 	/**
@@ -16,12 +19,12 @@ public class ClassifyAmplitude implements Classify{
 	 */
 	@Override
 	public String classify(Recording rec) {
-		String s = "  Amplitude:";
+		String s = "  Amplitude Classification:";
 		if(rec.amplitude > thesh) {
-			s += " loud";
+			s += " Loud";
 		}
 		else {
-			s += " quiet";
+			s += " Quiet";
 		}
 		return s;
 	}
