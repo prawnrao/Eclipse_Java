@@ -96,24 +96,6 @@ public class Tide {
 		return max;
 	}
 	
-	//getter methods
-	public double getLevel() {
-		return level;
-	}
-	public String toString() {
-		String s = "";
-		s = "\tId: "+this.id+" Date: "+this.day+"/"+this.month+
-				"/"+this.year+" Time: "+this.hour+":"+this.min+
-				"\n\tLevel:\t"+this.level+"m  Predicted Level: "+this.predLevel+"m";
-		return s;
-	}
-	public String getId() {
-		return id;
-	}
-	public double getPredLevel() {
-		return predLevel;
-	}
-
 	/**
 	 * Determines a site name for an index
 	 * @param id
@@ -202,5 +184,25 @@ public class Tide {
 			}
 		}
 		return tideList;
+	}
+	
+	//getter methods
+	public double getLevel() {
+		return level;
+	}
+	public String getId() {
+		return id;
+	}
+	public double getPredLevel() {
+		return predLevel;
+	}
+	
+	//toString method
+	public String toString() {
+		String s = "";
+		s = "\tId: "+this.id+" Date: "+this.day+"/"+this.month+
+				"/"+this.year+" Time: "+this.hour+":"+this.min+
+				"\n\tLevel:\t"+this.level+"m  Predicted Level: "+this.predLevel+"m";
+		return s;
 	}
 }
