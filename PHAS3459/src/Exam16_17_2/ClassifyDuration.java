@@ -19,12 +19,12 @@ public class ClassifyDuration implements Classify{
 	 */
 	@Override
 	public String classify(Recording rec) {
-		String s ="  Duration Classification:";
+		String s ="  Duration:";
 		if(rec.duration > thresh) {
-			s += " Long";
+			s += "\tLong";
 		}
 		else {
-			s += "  Short";
+			s += "\tShort";
 		}
 		return s;
 	}

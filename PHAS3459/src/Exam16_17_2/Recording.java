@@ -142,7 +142,10 @@ public class Recording {
 	 */
 	public String toString() {
 		String s = "";
-		s = "\n  Recording: "+recName+",  Instrument: "+instruName+"\n  Duration: "+duration+"s,  Amplitude: "+amplitude+" dBFS";
+		s = "\n  Recording:\t"+recName+
+			"\n  Instrument:\t"+instruName+
+			"\n  Duration:\t"+duration+"s"
+			+"\n  Amplitude:\t"+amplitude+" dBFS";
 		return s;
 	}
 

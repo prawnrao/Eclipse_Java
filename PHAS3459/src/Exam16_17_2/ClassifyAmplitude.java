@@ -19,12 +19,12 @@ public class ClassifyAmplitude implements Classify{
 	 */
 	@Override
 	public String classify(Recording rec) {
-		String s = "  Amplitude Classification:";
+		String s = "  Amplitude:";
 		if(rec.amplitude > thesh) {
-			s += " Loud";
+			s += "\tLoud";
 		}
 		else {
-			s += " Quiet";
+			s += "\tQuiet";
 		}
 		return s;
 	}
