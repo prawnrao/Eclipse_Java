@@ -1,4 +1,4 @@
-package Exam15_16_2;
+package Exam15_16;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,11 +13,7 @@ public class Main {
 		try {
 			HashMap<String, ArrayList<Pulse>> detectorMap;
 			detectorMap = Pulse.detectorMap(DetectorURL,PulseURL);
-
-			for(String id: detectorMap.keySet()) {
-				System.out.println(detectorMap.get(id));
-			}
-
+			
 			int totalPulses = Pulse.totalPulses(detectorMap);
 			System.out.println("  Total number of pulses:  "+totalPulses);
 
