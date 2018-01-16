@@ -15,13 +15,16 @@ public class HiggsMain {
 			ArrayList<Data> dataGG = Data.dataList(urlGG);
 			ArrayList<Data> dataZZ = Data.dataList(urlZZ);
 			System.out.println("Expected Events between 120GeV and 140GeV for GG: "+Data.ExpEv(dataGG, 120, 140));
-			System.out.println("Expected Events between 120GeV and 140GeV for ZZ: "+Data.ExpEv(dataZZ, 120, 140));
+			System.out.println("Expected Events between 120GeV and 140GeV for ZZ: "+Data.ExpEv(dataZZ, 120, 140)+"\n");
 			HashMap<String,ArrayList<Double>> higgsData = Data.higgsData(urlHiggs);
-			ArrayList<Data> higgsEvent = Data.allDataList(dataGG, higgsData.get("GG"));
-			System.out.println(higgsEvent);
-			higgsEvent = Data.allDataList(dataGG, higgsData.get("ZZ"));
-			System.out.println(higgsEvent);
 			
+			ArrayList<Data> higgsEventGG = Data.allDataList(dataGG, higgsData.get("GG"));
+			System.out.println(higgsEventGG);
+			System.out.println("\nObserved Events between 120GeV and 140GeV for GG: "+Data.obEv(higgsEventGG, 120, 140));
+			System.out.println("Log Likelyhood: "+Data.logLikelyhood(higgsEventGG));
+			ArrayList<Data> higgsEventZZ = Data.allDataList(dataZZ, higgsData.get("ZZ"));
+			System.out.println("Observed Events between 120GeV and 140GeV for ZZ: "+Data.obEv(higgsEventZZ, 120, 140));
+			System.out.println("Log Likelyhood: "+Data.logLikelyhood(higgsEventZZ));
 			
 		} catch (IOException e) {
 			e.printStackTrace();

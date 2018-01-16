@@ -1,4 +1,4 @@
-package Exam16_17_2;
+package Exam16_17;
 
 public class ClassifyAmplitude implements Classify{
 	/**

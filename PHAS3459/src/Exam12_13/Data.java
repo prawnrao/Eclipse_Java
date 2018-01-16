@@ -15,7 +15,7 @@ public class Data {
 	private int minE;
 	private int maxE;
 	private double expEv;
-	private int therEv;
+	private int obEv;
 
 	public Data(int minE, int maxE, double expEv) {
 		this.minE = minE;
@@ -23,11 +23,11 @@ public class Data {
 		this.expEv = expEv;
 	}
 
-	public Data(int minE, int maxE, double expEv, int therEv) {
+	public Data(int minE, int maxE, double expEv, int obEv) {
 		this.minE = minE;
 		this.maxE = maxE;
 		this.expEv = expEv;
-		this.therEv = therEv;
+		this.obEv = obEv;
 	}
 
 	public static ArrayList<Data> dataList(String urlName) throws MalformedURLException, IOException{
@@ -58,6 +58,21 @@ public class Data {
 			}
 		}
 		return sumExpEv;
+	}
+
+	public static double obEv(ArrayList<Data> dataList, double min, double max) {
+		double sumExpEv = 0;
+		for(Data d :dataList) {
+			if((d.getMinE()>=min) && (d.getMinE()<max)) {
+				sumExpEv += d.getobEv();
+			}
+		}
+		return sumExpEv;
+	}
+
+	private double getobEv() {
+
+		return obEv;
 	}
 
 	public static HashMap<String,ArrayList<Double>> higgsData(String urlName) throws IOException{
@@ -94,7 +109,7 @@ public class Data {
 			double e_round = Math.floor(e);
 			for(Data d:dataList) {
 				if(e_round==d.getMinE()) {
-					d.setCount(d.getCount()+1);
+					d.setCount(d.getObEv()+1);
 					break;
 				}
 			}
@@ -102,14 +117,27 @@ public class Data {
 		return finalData;
 	}
 
+	public static Double logLikelyhood(ArrayList<Data> dataList) {
+		double LL=0;
 
-	private void setCount(int i) {
-		this.therEv = i;
+		for(Data d : dataList) {
+			double y = d.getObEv();
+			double n = d.getExpEv();
+			if(y!=0 && n!=0) {
+				LL += (y-n) + (n*(Math.log(n/y))) ;
+			}
+		}
+
+		return LL;
 	}
 
-	private int getCount() {
+	private void setCount(int i) {
+		this.obEv = i;
+	}
 
-		return therEv;
+	private int getObEv() {
+
+		return obEv;
 	}
 
 	private int getMaxE() {
@@ -125,7 +153,7 @@ public class Data {
 	public String toString() {
 
 		String s = "";
-		s = "\nMinE: "+minE +" MaxE: "+ maxE +" Expected Events: "+ expEv+ " Theoretical Events: "+therEv;
+		s = "\nMinE: "+minE +" MaxE: "+ maxE +" Expected Events: "+ expEv+ " Theoretical Events: "+obEv;
 		return s;
 	}
 }

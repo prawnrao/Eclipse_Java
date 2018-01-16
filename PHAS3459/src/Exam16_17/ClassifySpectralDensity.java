@@ -1,4 +1,4 @@
-package Exam16_17_2;
+package Exam16_17;
 
 public class ClassifySpectralDensity implements Classify{
 	/**
@@ -25,7 +25,7 @@ public class ClassifySpectralDensity implements Classify{
 	 */
 	@Override
 	public String classify(Recording rec) {
-		String s = "  Spectral Density:";
+		String s = "  Spectral Den:";
 		//calculates the spectral densities for each of the frequencies 
 		double sd1 = spectralDensity(rec,low);
 		double sd2 = spectralDensity(rec,med);

@@ -1,4 +1,4 @@
-package Exam16_17_2;
+package Exam16_17;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;

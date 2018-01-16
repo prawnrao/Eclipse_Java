@@ -1,19 +1,31 @@
 package Exam16_17;
 
-public class ClassifyDuration implements ClassifySounds{
+public class ClassifyDuration implements Classify{
+	/**
+	 * Member variable
+	 */
+	double thresh;
 
-	public String classify(Info i) {
+	/**
+	 * Constructor
+	 * @param thresh
+	 */
+	public ClassifyDuration(double thresh) {
+		this.thresh = thresh;
+	}
 
-		double t = Info.duration(i);
-		String s = "";
-
-		if(t<1) {
-			s = "short";
+	/**
+	 * Classifies recording by duration, either long or short
+	 */
+	@Override
+	public String classify(Recording rec) {
+		String s ="  Duration:";
+		if(rec.duration > thresh) {
+			s += "\tLong";
 		}
 		else {
-			s ="long";
+			s += "\tShort";
 		}
 		return s;
 	}
-
 }

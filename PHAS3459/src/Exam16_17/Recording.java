@@ -8,100 +8,172 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
-
 public class Recording {
-	String fileName;
-	String RecordingName;
 	
 	/**
-	 * Constructor for a Recording object
-	 * @param fileName
-	 * @param RecordingName
+	 * Member Variables
 	 */
-	public Recording(String fileName, String RecordingName){
-		this.fileName = fileName;
-		this.RecordingName = RecordingName;
-	}
-	
+	int N;
+	double f;
+	double maxA;
+	ArrayList<Double> ampList;
+	String instruName;
+	double duration;
+	double amplitude;
+	String recName;
+	double rmsA;
+
 	/**
-	 * Method to parse the data to make a recording object
-	 * @param line
-	 * @return
-	 * @throws IOException
+	 * Constructor of a recording object
+	 * @param f
+	 * @param N
+	 * @param maxA
+	 * @param ampList
+	 * @param instruName
 	 */
-	public static Recording parseData(String line) throws IOException {
-		Scanner s = new Scanner(line);
-		String fileName="";
-		String RecordingName="";
-		while (s.hasNext()) {
-			fileName = s.next();
-			RecordingName = s.next();
+	public Recording(double f, int N, double maxA, ArrayList<Double> ampList){
+		//assigning values to member variables
+		this.f = f;
+		this.N = N;
+		this.maxA = maxA;
+		this.ampList = ampList;
+
+		//calculates duration
+		duration = N/f;
+
+		//calculates rmsAmp
+		double sum = 0;
+		for(double d : ampList) {//loop over all amplitude values
+			sum+=(d*d);//sum of amplitude square
 		}
-		Recording Recording = new Recording(fileName, RecordingName);
-		return Recording;
-	}
+		rmsA = Math.sqrt(sum/N);
 
-	public String getFileName() {
-		return fileName;
-	}
-
-	public String getInstrumentName() {
-		return RecordingName;
-	}
-
-
-	public String toString() {
-		String print = "\tFilename: "+fileName+"\tRecording Name: "+RecordingName ;
-		return print;
+		//calculates amplitude
+		amplitude = 20*Math.log10(rmsA/maxA);
 	}
 
 	/**
-	 * Method that creates a HashMap of Recording and Info objects
-	 * @param Recordings
-	 * @param urlList
-	 * @return
-	 * @throws IOException
-	 */
-	public static HashMap<Recording,Info> soundMap(ArrayList<Recording> Recordings,ArrayList<String> urlList) throws IOException{
-		HashMap<Recording, Info> map = new HashMap<>();
-
-		for (Recording i: Recordings) {
-
-			String fn = i.getFileName();
-			if (fn != "") {
-				for(String u :urlList) {
-					if(u.contains(fn)) {
-						Info info;
-						info = Info.parseData(u);
-						map.put(i, info);
-					}
-				}
-			}
-		}
-		return map;
-	}
-
-	/**
-	 * Method that unpacks an ArrayList of Recording Objects from a given URL
+	 * Method to unpack recording data from URL
 	 * @param urlName
-	 * @return
+	 * @return Recording object from URL
 	 * @throws IOException
 	 */
-	public static ArrayList<Recording> recData(String urlName) throws IOException {
+	public static Recording recData(String urlName) throws IOException{
+		URL url = new URL(urlName);
+		InputStream is = url.openStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		Scanner sc = new Scanner(br);
+
+		double f = sc.nextDouble();//frequency
+		int N = sc.nextInt();//number of recordings
+		double maxA =sc.nextDouble();//max amplitude
+
+		//ArrayList of individual amplitudes
+		ArrayList<Double> ampList = new ArrayList<>(N);
+		while(sc.hasNext()){
+			ampList.add(sc.nextDouble());//individual amplitude values
+		}
+		Recording rec = new Recording(f,N,maxA,ampList);
+		return rec;
+	}
+
+	/**
+	 * Method to unpack index from URL
+	 * @param urlName
+	 * @return	ArrayList(ArrayList(String)) index
+	 * @throws IOException
+	 */
+	public static ArrayList<ArrayList<String>> recIndex(String urlName) throws IOException{
 		URL url = new URL(urlName);
 		InputStream is = url.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		String line = "";
-		Recording Recording = null;
-		ArrayList<Recording> Recordings = new ArrayList<>();
 
-		while ((line=br.readLine()) != null){
-			Recording = parseData(line);
-			Recordings.add(Recording);
+		//ArrayList of each line that contains two strings, recording name and instrument name
+		ArrayList<ArrayList<String>> index = new ArrayList<>();
+		while((line = br.readLine()) != null) {
+			Scanner sc = new Scanner(line);
+			ArrayList<String> i = new ArrayList<>();
+			i.add(sc.next());//recording name
+			i.add(sc.next());//instrument name
+			index.add(i);
 		}
-
-		return Recordings;
+		return index;
 	}
+
+	/**
+	 * Method to create a HashMap of recording name to Recording object
+	 * @param urlIndex
+	 * @param urlList
+	 * @return HashMap(String,Recording) recMap
+	 * @throws IOException
+	 */
+	public static HashMap<String, Recording> recMap(String urlIndex, ArrayList<String> urlList) throws IOException{
+
+		HashMap<String,Recording> recMap = new HashMap<>();
+		ArrayList<ArrayList<String>> index = recIndex(urlIndex);//unpacks index data
+
+		//loops over index elements
+		for(ArrayList<String> s: index) {
+			String fileName = s.get(0);//gets file name from index element
+			//loops over list of URLs
+			for(String u: urlList) {
+				//checks if URL contains file name
+				if(u.contains(fileName)) {
+					//creates new recording object
+					Recording rec = recData(u);
+					rec.setRecName(fileName);
+					//adds instrument name to the recording object
+					rec.setInstruName(s.get(1));
+					//adds recording name and recording to HashMap
+					recMap.put(fileName, rec);
+					break;
+				}
+			}
+		}
+		return recMap;
+	}
+
+
+	/**
+	 * toString method to print out required information of a recording object
+	 */
+	public String toString() {
+		String s = "";
+		s = "\n  Recording:\t"+recName+
+			"\n  Instrument:\t"+instruName+
+			"\n  Duration:\t"+duration+"s"
+			+"\n  Amplitude:\t"+amplitude+" dBFS";
+		return s;
+	}
+
+	/**
+	 * Setter/Getter Methods
+	 */
+
+	public double getF() {
+		return f;
+	}
+	public double getMaxAmp() {
+		return maxA;
+	}
+	public double getN() {
+		return N;
+	}
+	public ArrayList<Double> getAmpList() {
+		return ampList;
+	}
+	public String getName() {
+		return instruName;
+	}
+	private void setInstruName(String s) {
+		this.instruName =s;
+	}
+	private void setRecName(String s){
+		recName = s;
+	}
+	
 }
+
