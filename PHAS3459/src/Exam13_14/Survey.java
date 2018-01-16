@@ -23,6 +23,7 @@ public class Survey {
 		this.height = height;
 
 	}
+	
 	public Survey(String id,double lat,double lon) {
 		this.id = id;
 		this.lat = lat;

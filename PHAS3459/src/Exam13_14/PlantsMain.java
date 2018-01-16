@@ -29,10 +29,10 @@ public class PlantsMain {
 			spAnimal = Species.spData(urlSpAnimal);//ArrayList of species objects
 			System.out.println(spPlant);
 			System.out.println(spAnimal);
-			
+
 			surPlant = Survey.surveyDataPlant(urlSurPlant);//ArrayList of survey objects
 			surAnimal = Survey.surveyDataAnimal(urlSurAnimal);//ArrayList of survey objects
-			
+
 			surMapPlant = Survey.surveyMapPlant(surPlant);//HashMap of string to AR<AR<Double>>
 			surMapAnimal = Survey.surveyMapAnimal(surAnimal);//HashMap of string to AR<AR<Double>>
 
@@ -54,7 +54,7 @@ public class PlantsMain {
 				System.out.println("\n\tID:\t"+s);
 				System.out.println("\tName:\t"+name +"\n\tNo of Species:\t"+size+"\n\tMean H:\t"+meanH+" cm");
 			}
-			
+
 			System.out.println("\n\n\tSpecies with the maximum mean height was: "+maxName+
 					"\n\tWith a mean height of:\t"+maxMeanH+" cm");
 			System.out.println("\n\tSpecies with the minimum mean height was: "+minName+
@@ -74,41 +74,43 @@ public class PlantsMain {
 			filtSurList = fr1.filerSp(surList1);
 			meanH = Survey.meanH(filtSurList);
 			System.out.println("\n\tMean height of Urtica dioica ("+id+") found south of -30 degrees was: "+meanH+" m");
-			
+
 			ArrayList<ArrayList<Double>> surList2 = new ArrayList<>();
 			id = Species.getID("Solanum carolinense", spPlant);
 			surList2 = surMapPlant.get(id);
-			
+
 			FilterSpecies fd = new FilterByDist(-30.967,75.430,50);
 			filtSurList = fd.filerSp(surList1);
 			meanH = Survey.meanH(filtSurList);
 			System.out.println("\n\tMean height of Solanum carolinense ("+id+") found 50 km from (-30.967,75.430) was: "+meanH+" m");
-		
-			
+
+
 			ArrayList<ArrayList<Double>> surList3 = new ArrayList<>();
 			surList3 = Survey.surveyArrayAnimal(surAnimal);
-			
+
 			ArrayList<ArrayList<Double>> filtSurList1 = new ArrayList<>();
 			ArrayList<ArrayList<Double>> findKeyList = new ArrayList<>();
 			ArrayList<String> nameList = new ArrayList<>();
-			
-//			FilterSpecies fd1 = new FilterByDist(-30.967,75.430,155);
-//			filtSurList1 = fd1.filerSp(surList3);
-//			System.out.println(filtSurList1);
-//			
-//			for(String s: surMapAnimal.keySet()) {
-//				name = Species.getName(s, spAnimal);
+
+			FilterSpecies fd1 = new FilterByDist(-30.967,75.430,155);
+			filtSurList1 = fd1.filerSp(surList3);
+
+
+			for(String s: surMapAnimal.keySet()) {
+				name = Species.getName(s, spAnimal);
 //				System.out.println(name);
-//				findKeyList = surMapAnimal.get(s);
-//				for(ArrayList<Double> ar :filtSurList1) {
-//					if(findKeyList.contains(ar)) {
-//						nameList.add(name);
-//					}
-//				}
-//			}
-//			System.out.println(findKeyList);
-//			System.out.println(nameList);
-			
+				findKeyList = surMapAnimal.get(s);
+//				System.out.println(findKeyList);
+				for(ArrayList<Double> ar: filtSurList1) {
+					for(double d :ar) {
+						if(findKeyList.contains(d)) {
+							nameList.add(name);
+						}
+					}
+				}
+			}
+			System.out.println(nameList);
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
