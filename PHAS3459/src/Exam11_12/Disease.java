@@ -59,6 +59,14 @@ public class Disease {
 		}
 		return allDiseaseList;
 	}
+	
+	public static double infectedPop(Disease dis) {
+		double sum =0;
+		for(double d: dis.getInfected()) {
+			sum+=d;
+		}
+		return sum;
+	}
 
 	private void setInfected(ArrayList<Double> infected2) {
 		infected = infected2;
@@ -81,7 +89,7 @@ public class Disease {
 			s = "(X: "+ infected.get(0)+" Y: "+ infected.get(1)+" Z: "+ infected.get(2)+")";
 		}
 		if(infected.size()==5) {
-			s = "(A: "+ infected.get(2)+" B: "+ infected.get(3)+", X: "+ infected.get(0)+" Y: "+ infected.get(1)+" Z: "+ infected.get(2)+")";
+			s = "(A: "+ infected.get(3)+" B: "+ infected.get(4)+", X: "+ infected.get(0)+" Y: "+ infected.get(1)+" Z: "+ infected.get(2)+")";
 		}
 		return s;
 	}

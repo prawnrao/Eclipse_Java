@@ -11,10 +11,10 @@ import java.util.Scanner;
 
 public class Region {
 
-	private String ID;
-	private String name;
-	private Disease disease;
-	private Double pop;
+	String ID;
+	String name;
+	Disease disease;
+	Double pop;
 
 	public Region(String ID, String name) {
 		this.ID = ID;
@@ -75,10 +75,16 @@ public class Region {
 
 	public static Disease diseasePerCap(HashMap<String,Region> regionMap){
 		double total = totalPop(regionMap);
+		double totalXYZ = total;
+		double totalAB = total;
 		double A = 0;double B=0;double X=0;double Y=0;double Z=0;
 		for(String s:regionMap.keySet()) {
 			Region r = regionMap.get(s);
 			Disease disease = r.getDisease();
+			if(disease ==null) {
+				totalXYZ -= r.getPop();
+				continue;
+			}
 			if(disease!=null) {
 				ArrayList<Double> d = disease.getInfected();
 				X += d.get(0);
@@ -87,14 +93,46 @@ public class Region {
 				if(d.size()>3) {
 					A += d.get(3);
 					B += d.get(4);
+					continue;
+				}
+				totalAB -= r.getPop();
+			}
+		}
+		ArrayList<Double> perCapita = new ArrayList<>();
+		perCapita.add(X/totalXYZ);
+		perCapita.add(Y/totalXYZ);
+		perCapita.add(Z/totalXYZ);
+		perCapita.add(A/totalAB);
+		perCapita.add(B/totalAB);
+		Disease diseasePerCapita = new Disease("",perCapita);
+		return diseasePerCapita;
+	}
+
+	public static ArrayList<Region> regionDiseasePerCapita(HashMap<String,Region> regionMap){
+		ArrayList<Region> maxAndMin = new ArrayList<>();
+		double maxPerCap = -Double.MAX_VALUE;
+		double minPerCap = Double.MAX_VALUE;
+		Region maxR = null;
+		Region minR = null;
+		for(String s : regionMap.keySet()) {
+			Region currR = regionMap.get(s);
+			if(currR.getDisease()!= null){
+
+				double currPerCap = Disease.infectedPop(currR.getDisease())/currR.getPop();
+				if(currPerCap>maxPerCap) {
+					maxR = currR;
+					maxPerCap = currPerCap;
+					continue;
+				}
+				if(currPerCap < minPerCap) {
+					minR = currR;
+					minPerCap = currPerCap;
 				}
 			}
 		}
-		System.out.println(A+"  "+B+"  "+X+"  "+Y+"  "+Z);
-		ArrayList<Double> perCapita = new ArrayList<>();
-		perCapita.add(X/total);perCapita.add(Y/total);perCapita.add(Z/total);perCapita.add(A/total);perCapita.add(B/total);
-		Disease diseasePerCapita = new Disease("",perCapita);
-		return diseasePerCapita;
+		maxAndMin.add(maxR);
+		maxAndMin.add(minR);
+		return maxAndMin;
 	}
 
 	private Disease getDisease() {

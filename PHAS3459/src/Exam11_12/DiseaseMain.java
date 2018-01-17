@@ -17,13 +17,13 @@ public class DiseaseMain {
 			ArrayList<Region> regionData = Region.regionData(regionURL);
 			ArrayList<Population> popData = Population.popData(popURL);
 			HashMap<String,Region> regionMap = Region.regionMap(regionData, allDiseaseData, popData);
-			for(String s :regionMap.keySet()) {
-				System.out.println("  "+regionMap.get(s));
-			}
 			double totalPop = (Region.totalPop(regionMap));
 			System.out.println("  Total population sample size:  "+totalPop);
 			Disease perCapita = Region.diseasePerCap(regionMap); 
 			System.out.println("  Per Capita Diseases:\n  "+perCapita);
+			ArrayList<Region> regionPerCapita = Region.regionDiseasePerCapita(regionMap);
+			System.out.println("  Region with highest per capita disease: "+regionPerCapita.get(0).name);
+			System.out.println("  Region with lowest per capita disease: "+regionPerCapita.get(1).name);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

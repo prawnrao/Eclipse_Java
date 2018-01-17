@@ -173,7 +173,7 @@ public class Pulse {
 			double sumTimeThresh = 0;
 
 
-			tt = new ThresholdTime(1);
+			tt = new ThresholdTime(-1);
 			for(Pulse p: detectorMap.get(id)) {
 				sumAmp += p.getAmp();
 				sumTime += p.getTime();
